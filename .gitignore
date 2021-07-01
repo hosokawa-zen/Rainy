@@ -102,3 +102,10 @@ dist
 
 # TernJS port file
 .tern-port
+yarn.lock
+Web/.vscode
+package-lock.json
+Web/.firebase
+Mobile/android/app/release
+Mobile/android/app/debug
+Mobile/ios/Podfile.lock

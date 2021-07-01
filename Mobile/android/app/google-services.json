@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "541669291562",
+    "firebase_url": "https://deallocker-fb7ef-default-rtdb.firebaseio.com",
+    "project_id": "deallocker-fb7ef",
+    "storage_bucket": "deallocker-fb7ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541669291562:android:75049e4fa754b2eef83553",
+        "android_client_info": {
+          "package_name": "com.brainyapps.deallocker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541669291562-eaa1uptudj4ft14sdfqd561naoae6sle.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_FghXzowGg3_1F-DltKTon4X8WWzJj7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "541669291562-eaa1uptudj4ft14sdfqd561naoae6sle.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "541669291562-nat1bvrrqpk3cb51s33qodbn518qgmj1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.brainyapps.deallocker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

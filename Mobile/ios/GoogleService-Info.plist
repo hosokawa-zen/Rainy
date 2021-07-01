@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>541669291562-nat1bvrrqpk3cb51s33qodbn518qgmj1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.541669291562-nat1bvrrqpk3cb51s33qodbn518qgmj1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCpGpbT3A-J6e6Nn4l2TENOjjrAv-BreR8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>541669291562</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.brainyapps.deallocker</string>
+	<key>PROJECT_ID</key>
+	<string>deallocker-fb7ef</string>
+	<key>STORAGE_BUCKET</key>
+	<string>deallocker-fb7ef.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:541669291562:ios:c9d3c8d7390a02e5f83553</string>
+	<key>DATABASE_URL</key>
+	<string>https://deallocker-fb7ef-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

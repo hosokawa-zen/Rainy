@@ -1,0 +1,374 @@
+.c-sidebar {
+  background-color: white;
+  color: black;
+
+  .c-sidebar-brand {
+    color: black;
+    background-color: white;
+    border-bottom: 1px solid #d8dbe0;
+
+    button {
+      margin-left: -15px !important;
+      margin-right: 5px;
+      min-width: 2rem;
+      padding: 0px !important;
+
+      span {
+        height: 1rem;
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(1, 37, 69, 0.5)' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+      }
+    }
+
+    .welcome {
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+
+    .version {
+      font-size: 0.6rem;
+      font-weight: bold;
+    }
+
+    .c-avatar-img {
+      border: 2px solid #012545;
+    }
+  }
+
+  .c-sidebar-nav-item {
+    .c-sidebar-nav-link {
+      color: black !important;
+      border-bottom: 1px solid #d8dbe0;
+      font-weight: 700;
+
+      .c-sidebar-nav-icon {
+        color: #012545 !important;
+        height: 1rem;
+      }
+
+      &:hover:not(.c-active) {
+        background-color: white !important;
+        opacity: 0.5;
+      }
+    }
+
+    .c-active {
+      background-color: #012545 !important;
+      color: white !important;
+
+      .c-sidebar-nav-icon {
+        color: white !important;
+        height: 1rem;
+      }
+    }
+  }
+
+  .side-footer {
+    height: 75px;
+
+    .c-sidebar-nav-link {
+      border-top: 1px solid #d8dbe0;
+      border-bottom: 0px;
+      color: red !important;
+    }
+  }
+}
+
+.c-header {
+  background-color: #012545;
+
+  .header-content {
+    height: 56px;
+    line-height: 56px;
+    width: calc(100% - 68px);
+
+    .header-password {
+      line-height: 56px;
+      height: 56px;
+
+      svg {
+        height: 1rem;
+        margin-left: 0.2rem;
+        color: white;
+        margin-bottom: 0.25rem;
+      }
+
+      .header-title {
+        margin: 0px;
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+        margin-left: 1rem;
+      }
+
+      .save-btn {
+        position: absolute;
+        background-color: #fdf567;
+        border-radius: 20px;
+        height: 1.7rem;
+        width: 4.5rem;
+        font-weight: 700;
+        font-size: 0.8rem;
+        line-height: 0.6rem;
+        top: 15px;
+        right: 80px;
+      }
+
+      .adduser-btn {
+        position: absolute;
+        background-color: #fdf567;
+        border-radius: 20px;
+        height: 1.7rem;
+        width: 6rem;
+        font-weight: 700;
+        font-size: 0.8rem;
+        line-height: 0.6rem;
+        top: 15px;
+        right: 80px;
+      }
+
+      .addpromotion-btn {
+        position: absolute;
+        background-color: #fdf567;
+        border-radius: 20px;
+        height: 1.7rem;
+        width: 9rem;
+        font-weight: 700;
+        font-size: 0.8rem;
+        line-height: 0.6rem;
+        top: 15px;
+        right: 80px;
+      }
+
+      .preview-btn {
+        position: absolute;
+        background-color: #fdf567;
+        border-radius: 20px;
+        height: 1.7rem;
+        width: 5rem;
+        font-weight: 700;
+        font-size: 0.8rem;
+        line-height: 0.6rem;
+        top: 15px;
+        right: 170px;
+      }
+
+      .publish-btn {
+        position: absolute;
+        background-color: #fdf567;
+        border-radius: 20px;
+        height: 1.7rem;
+        width: 5rem;
+        font-weight: 700;
+        font-size: 0.8rem;
+        line-height: 0.6rem;
+        top: 15px;
+        right: 80px;
+      }
+
+      .logo-btn {
+        position: absolute;
+        height: 42px;
+        width: 42px;
+        right: 20px;
+        top: 8px;
+        border-radius: 4px;
+        padding: 0px;
+
+        img {
+          border-radius: 50%;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .right-corner {
+        width: 500px !important;
+        right: 20px !important;
+      }
+
+      .right-corner-2 {
+        width: 150px !important;
+        right: 20px !important;
+      }
+
+      .filter-content {
+        height: 56px;
+        width: 750px;
+        display: flex;
+        position: absolute;
+        top: 0px;
+        right: 65px;
+
+        .add-business-btn {
+          background-color: #fdf567;
+          border-radius: 20px;
+          height: 30px;
+          width: 195px;
+          font-weight: 700;
+          font-size: 0.8rem;
+          line-height: 0.6rem;
+          margin-top: 13px;
+          margin-right: 10px;
+        }
+
+        .add-bank-btn {
+          margin-right: 9px;
+          padding: 0px;
+          background-color: #fdf567;
+          height: 30px;
+          width: 250px;
+          font-weight: 700;
+          border-radius: 15px;
+          font-size: 0.75rem;
+          line-height: 1px;
+          margin-top: 0.75rem;
+        }
+
+        .add-business-account-btn {
+          background-color: #fdf567;
+          border-radius: 20px;
+          height: 30px;
+          width: 195px;
+          font-weight: 700;
+          font-size: 0.8rem;
+          line-height: 0.6rem;
+          margin-top: 13px;
+          margin-right: 10px;
+        }
+
+        .date-input {
+          width: 160px;
+          height: 30px;
+          background-color: #30475e;
+          font-weight: 500;
+          color: white;
+          font-size: 0.75rem;
+          margin: 13px 10px;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+          filter: invert(1);
+        }
+
+        .header-filter-title {
+          color: white;
+          font-weight: 600;
+          font-size: 0.6rem;
+          width: 65px;
+          min-width: 65px;
+        }
+
+        .header-to-title {
+          color: white;
+          font-weight: 600;
+          font-size: 0.6rem;
+        }
+
+        .search-bar {
+          margin: 13px;
+          width: 300px;
+          height: 30px;
+          background-color: #30475e;
+          border-radius: 5px;
+
+          .input-group-prepend {
+            height: 100%;
+
+            .input-group-text {
+              background-color: transparent;
+              border: 0px;
+            }
+          }
+
+          .form-control {
+            height: 100%;
+            background-color: transparent;
+            font-weight: 500;
+            font-size: 0.75rem;
+            color: white;
+
+            &::placeholder {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .card {
+    border: 0px;
+    margin-bottom: 0px;
+
+    .card-header {
+      border: 0px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .card-body {
+      border: 0px;
+
+      .business-publish-btn {
+        background-color: #012545;
+        height: 30px;
+        width: 180px;
+        font-weight: 500;
+        border-radius: 15px;
+        font-size: 0.75rem;
+        line-height: 12px;
+        color: white;
+        margin-top: 1rem;
+      }
+      
+      .title-input {
+        display: flex;
+        margin-bottom: 1rem;
+
+        label {
+          width: 120px;
+          min-width: 120px;
+          height: calc(1.7em + 0.75rem + 2px);
+          text-align: left;
+          padding-right: 0px;
+          font-weight: 600;
+          font-size: 0.8rem;
+          line-height: calc(1.7em + 0.75rem + 2px);
+        }
+
+        .center-label {
+          line-height: calc(1.7em + 0.75rem + 2px);
+        }
+
+        input {
+          background-color: #f2f2f2;
+          border-radius: 10px;
+          height: calc(1.7em + 0.75rem + 2px);
+        }
+
+        .create-book-photo-picker {
+          margin-top: 0px;
+          box-shadow: none;
+          border-radius: 10px;
+
+          svg {
+            width: 25px !important;
+            height: 25px !important;
+          }
+        }
+
+        .create-book-image-preview-icon-container {
+          width: 30px !important;
+          height: 30px !important;
+
+          svg {
+            width: 15px !important;
+            height: 15px !important;
+          }
+        }
+      }
+    }
+  }
+
+}

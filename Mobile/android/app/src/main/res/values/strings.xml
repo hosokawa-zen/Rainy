@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Deal Locker</string>
+    <string name="fb_app_id">348662039921748</string>
+    <string name="fb_login_protocol_scheme">fb348662039921748</string>
+</resources>

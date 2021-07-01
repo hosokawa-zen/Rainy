@@ -1,0 +1,21 @@
+rootProject.name = 'Deal Locker'
+include ':react-native-paypal-lib'
+project(':react-native-paypal-lib').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-paypal-lib/android')
+include ':react-native-stripe-payments'
+project(':react-native-stripe-payments').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-stripe-payments/android')
+include ':react-native-paypal-wrapper'
+project(':react-native-paypal-wrapper').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-paypal-wrapper/android')
+include ':@react-native-google-signin_google-signin'
+project(':@react-native-google-signin_google-signin').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-google-signin/google-signin/android')
+include ':react-native-get-random-values'
+project(':react-native-get-random-values').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-get-random-values/android')
+include ':@invertase_react-native-apple-authentication'
+project(':@invertase_react-native-apple-authentication').projectDir = new File(rootProject.projectDir, '../node_modules/@invertase/react-native-apple-authentication/android')
+include ':react-native-facebook-login'
+project(':react-native-facebook-login').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-facebook-login/android')
+include ':react-native-facebook-login'
+project(':react-native-facebook-login').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-facebook-login/android')
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+include ':app'
+include ':@react-native-firebase_app'
+project(':@react-native-firebase_app').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-firebase/app/android')
