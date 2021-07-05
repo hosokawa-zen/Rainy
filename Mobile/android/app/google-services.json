@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:541669291562:android:75049e4fa754b2eef83553",
+        "mobilesdk_app_id": "1:541669291562:android:2288bf4a547720b3f83553",
         "android_client_info": {
           "package_name": "com.brainyapps.deallocker"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "541669291562-ukjg5lou465dopop61nj0sgnaqb1cc4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brainyapps.deallocker",
+            "certificate_hash": "1e82132200cb54c8a8dd22d66c517bee5ff31d26"
+          }
+        },
         {
           "client_id": "541669291562-eaa1uptudj4ft14sdfqd561naoae6sle.apps.googleusercontent.com",
           "client_type": 3
@@ -32,10 +40,10 @@
               "client_type": 3
             },
             {
-              "client_id": "541669291562-nat1bvrrqpk3cb51s33qodbn518qgmj1.apps.googleusercontent.com",
+              "client_id": "541669291562-hc2cbtkir5ep6ejqtjvnjv11r21horfu.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.brainyapps.deallocker"
+                "bundle_id": "com.brainyapps.deal"
               }
             }
           ]

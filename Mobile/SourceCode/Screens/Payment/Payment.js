@@ -3,7 +3,7 @@ import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {Text, Image, StatusBar, View, FlatList, ScrollView, Modal} from 'react-native';
+import {Text, Image, StatusBar, View, FlatList, ScrollView, Modal, Platform} from 'react-native';
 import React from 'react';
 // import RNPaypal from 'react-native-paypal-lib';
 import { CreditCardInput } from "react-native-credit-card-input";
@@ -23,7 +23,8 @@ import RNProgressHud from 'progress-hud';
 import { Alert } from 'react-native';
 
 import { cloudUrl, stripeId, freemium } from '../../Global'
- 
+import RNFetchBlob from 'rn-fetch-blob';
+
 export default class Payment extends React.Component {
     constructor(props) {
         super(props);
@@ -50,7 +51,7 @@ export default class Payment extends React.Component {
         this.payBusinessPrice = 0;
         this.payAdminPrice = 0;
         this.businessAccountId = "";
-        
+
         if (this.props.route.params.price !== '') {
             this.totalPrice = parseFloat(this.props.route.params.count) * parseFloat(this.props.route.params.price)
             this.feePrice = parseFloat(this.props.route.params.count) * parseFloat(this.props.route.params.price) * 0.05
@@ -69,6 +70,7 @@ export default class Payment extends React.Component {
     calculateRealPrice() {
         const currentSecond = Math.floor(Date.now() / 1000)
         const business = this.props.route.params.deal.business
+        console.log('business',business);
         this.businessAccountId = business.accountID
         const timediff = Math.abs(currentSecond - business.created_at)
         if (timediff > freemium) {
@@ -165,20 +167,31 @@ export default class Payment extends React.Component {
         try {
             if (this.state.isCardValid) {
 
+                if(!this.businessAccountId){
+                    Alert.alert('Error', 'This Business Account was not registered on Stripe', [{text: 'OKAY'}]);
+                    return;
+                }
                 // this.payAdminPrice = 0;
                 // this.businessAccountId = "";
                 const apiUrl = `${cloudUrl}?amount=${this.allPrice}&accountID=${this.businessAccountId}&fee=${this.payAdminPrice}`
                 console.log(apiUrl)
                 debugger
-                const response = await fetch(apiUrl, { method: 'get' })
-                console.log(response);
-                let res = await response.json();
+                const res = await RNFetchBlob.fetch('GET', apiUrl).then(response => {
+                    console.log(response);
+                    return response.json();
+                })
+                .catch(e => {
+                    Alert.alert('Error', 'This Business Account was not registered on Stripe', [{text: 'OKAY'}]);
+                    return null;
+                })
                 console.log(res);
-                
+                if(!res){
+                    return;
+                }
                 const splited = this.cardValue.expiry.split('/')
                 const month = splited[0]
                 const year = splited[1]
-                
+
                 const cardDetails = {
                     number: this.cardValue.number,
                     expMonth: parseInt(month),

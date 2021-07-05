@@ -1,40 +1,56 @@
 <manifest
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  
-  package="com.brainyapps.deallocker"
-  
-  >
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    
+        package="com.brainyapps.deallocker"
+
+>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
-      android:name=".MainApplication"
-      android:label="@string/app_name"
-      android:icon="@mipmap/ic_launcher"
-      android:roundIcon="@mipmap/ic_launcher_round"
-      android:allowBackup="false"
-      tools:replace="android:allowBackup"
-      android:theme="@style/AppTheme">
-      <activity
-        android:name=".MainActivity"
-        android:label="@string/app_name"
-        android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-        android:launchMode="singleTask"
-        android:windowSoftInputMode="adjustNothing">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-      </activity>
+            android:name=".MainApplication"
+            android:label="@string/app_name"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:usesCleartextTraffic="true"
+            android:allowBackup="false"
+            tools:replace="android:allowBackup"
+            android:theme="@style/AppTheme">
+        <activity
+                android:name=".MainActivity"
+                android:label="@string/app_name"
+                android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+                android:launchMode="singleTask"
+                android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
-      <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
                 android:value="AIzaSyAxhF267Ltfd02AIYhRAxYTe1a0eRyvocI"/>
-        <meta-data
-                android:name="com.facebook.sdk.ApplicationId"
-                android:value="@string/fb_app_id"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+                   android:value="@string/fb_app_id"/>
+        <activity android:name="com.facebook.FacebookActivity"
+                  android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+                  android:label="@string/app_name"/>
+        <activity
+                android:name="com.facebook.CustomTabActivity"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="@string/fb_login_protocol_scheme"/>
+            </intent-filter>
+        </activity>
+
+        <provider android:authorities="com.facebook.app.FacebookContentProvider348662039921748"
+                  android:name="com.facebook.FacebookContentProvider"
+                  android:exported="true"/>
     </application>
 
 </manifest>
