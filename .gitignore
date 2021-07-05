@@ -109,3 +109,4 @@ Web/.firebase
 Mobile/android/app/release
 Mobile/android/app/debug
 Mobile/ios/Podfile.lock
+Mobile/android/java_pid27076.hprof
