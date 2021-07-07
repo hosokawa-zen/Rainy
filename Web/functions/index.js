@@ -5,8 +5,7 @@ const database = admin.database()
 const cors = require('cors')({origin: true});
 
 const http = require('http');
-//const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
-const stripe = require('stripe')('sk_test_51J9vm5Cj4zJmU9hW2oOlFr6O5fJgJdZVpN3bihflkTL5Vh3mXXsky9IJtEk5Zupr1xuRmJglwFW8MkBHHeTgtX6w00o4s1OexD');
+const stripe = require('stripe')('sk_test_51IynTvDzq3GsLlpcwWOE8Ckj8wbkUsIIgYlXNYNQWU4LHpSim23juI2mnvyNQmlYVGgsDKm3azkSr71jtCQ60EM100AbV4rMAG');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
