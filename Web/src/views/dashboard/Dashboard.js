@@ -79,7 +79,7 @@ const Dashboard = () => {
                           item.name = userData[item.user_id].name
                           // item.user_admin = userData[item.user_id].admin
                         }
-                        if (promoData[item.promotio_id].userBusinessId == userBusinessId) {
+                        if (promoData[item.promotio_id] && promoData[item.promotio_id].userBusinessId == userBusinessId) {
                           items.push(item)
                         }
                       })
@@ -101,7 +101,7 @@ const Dashboard = () => {
     var datum = Date.parse(strDate);
     return datum/1000;
   }
-  
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setIsLoader(true)
@@ -246,7 +246,7 @@ const Dashboard = () => {
         var updates = {}
         updates['transactions/'+ item.transaction_key + "/deal_status"] = 2;
         updates['transactions/'+ item.transaction_key + "/user_admin"] = userId;
-        
+
         database.ref().update(updates);
       }
     })
@@ -339,10 +339,10 @@ const Dashboard = () => {
           </div>
         </div>
       }
-      
+
 
       <CModal
-        show={info} 
+        show={info}
         onClose={() => setInfo(!info)}
         color="info"
         centered
