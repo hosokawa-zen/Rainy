@@ -26,7 +26,7 @@ import {GoogleSignin, statusCodes} from '@react-native-google-signin/google-sign
 import {appleAuth, appleAuthAndroid} from '@invertase/react-native-apple-authentication';
 import 'react-native-get-random-values';
 import {v4 as uuid} from 'uuid';
-import {AccessToken, LoginManager} from 'react-native-fbsdk-next';
+import {AccessToken, LoginManager, Settings} from 'react-native-fbsdk-next';
 
 class SocialLogin extends React.Component {
     constructor(props) {

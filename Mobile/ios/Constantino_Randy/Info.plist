@@ -32,9 +32,23 @@
 				<string>com.googleusercontent.apps.541669291562-nat1bvrrqpk3cb51s33qodbn518qgmj1</string>
 			</array>
 		</dict>
+        <dict>
+            <key>CFBundleIdentifier</key>
+            <string></string>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb348662039921748</string>
+            </array>
+        </dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FacebookAppID</key>
+    <string>348662039921748</string>
+    <key>FacebookDisplayName</key>
+    <string>DealLocker</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>348662039921748</string>
