@@ -139,7 +139,7 @@ export default class NintendoSwitch extends React.Component {
     onPressBuyNow = () => {
         if(this.state.buttonTitle === 'Buy Now') {
             console.log('deals', this.state.dealData.dealsPerUser, this.state.dealData.paidCount);
-            if (0 && this.state.dealData.dealsPerUser <= this.state.dealData.paidCount) {
+            if (this.state.dealData.dealsPerUser <= this.state.dealData.paidCount) {
                 alert("User purchased a limited count of deals")
             } else {
                 this.setState({
