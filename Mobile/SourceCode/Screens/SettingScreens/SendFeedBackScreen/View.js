@@ -19,9 +19,38 @@ class SendFeedback extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            name: '',
+            email: '',
+            subject: '',
+            content: ''
         }
     }
+
+    validateEmail = (email) => {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    isValid = () => {
+        const {name, email, subject, content} = this.state;
+        if(email.trim().length === 0){
+            alert('Please enter email address.');
+            return false;
+        }
+        if(!this.validateEmail(email.trim())){
+            alert('Please enter valid email address.');
+            return false;
+        }
+        return true;
+    }
+
+    onSend = () => {
+        if(!this.isValid()){
+            return;
+        }
+        this.props.navigation.pop();
+    }
+
     render() {
         return (
             <View style={styles.mainContainer}>
@@ -46,6 +75,8 @@ class SendFeedback extends React.Component {
                         <AppInput
                             height={hp(7)}
                             width={'90%'}
+                            value = {this.state.name}
+                            onChangeText = {(text) => this.setState({name: text})}
                             backgroundColor={colors.app_dark_white}
                         />
 
@@ -55,6 +86,8 @@ class SendFeedback extends React.Component {
                         <AppInput
                             height={hp(7)}
                             width={'90%'}
+                            value = {this.state.email}
+                            onChangeText = {(text) => this.setState({email: text})}
                             backgroundColor={colors.app_dark_white}
                         />
                     </View>
@@ -63,6 +96,8 @@ class SendFeedback extends React.Component {
                         <AppInput
                             height={hp(7)}
                             width={'90%'}
+                            value = {this.state.subject}
+                            onChangeText = {(text) => this.setState({subject: text})}
                             backgroundColor={colors.app_dark_white}
                         />
 
@@ -73,6 +108,8 @@ class SendFeedback extends React.Component {
                         <AppInput
                             height={hp(15)}
                             width={'90%'}
+                            value = {this.state.content}
+                            onChangeText = {(text) => this.setState({content: text})}
                             backgroundColor={colors.app_dark_white}
                         />
                     </View>
@@ -83,7 +120,7 @@ class SendFeedback extends React.Component {
                 {/* //================================ Buttons ======================================// */}
                 <View style={styles.LastView}>
                     <View style={styles.saveButtonView}>
-                        <Button title={'SEND'}/>
+                        <Button title={'SEND'} onPress={this.onSend}/>
                     </View>
                 </View>
             </View>

@@ -2,7 +2,7 @@
 //================================ React Native Imported Files ======================================//
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { View, FlatList, StatusBar, Image, Text, TouchableOpacity, Modal } from 'react-native';
+import {View, FlatList, StatusBar, Image, Text, TouchableOpacity, Modal, Alert} from 'react-native';
 import React from 'react';
 
 //================================ Local Imported Files ======================================//
@@ -13,6 +13,7 @@ import RateApp from "../../../Components/RateModel/RateApp";
 import images from '../../../Assets/Images/images';
 import colors from '../../../Assets/Colors/colors';
 import styles from "./Styles";
+import auth from '@react-native-firebase/auth';
 
 class SettingsScreen extends React.Component {
     constructor(props) {
@@ -115,7 +116,12 @@ class SettingsScreen extends React.Component {
                 this.props.navigation.navigate('TermsAndCondtions');
                 break;
             case 7:
-                this.props.navigation.navigate('SocialLoginScreen');
+                Alert.alert('Log out', 'Are you sure to log out?', [{
+                    text: 'Cancel',
+                    style: 'cancel'
+                }, {text: 'confirm', onPress: () => {
+                        auth().signOut().then(r => this.props.navigation.navigate('SocialLoginScreen'));
+                    }}], { cancelable: true });
                 break;
         }
     }
@@ -175,6 +181,9 @@ class SettingsScreen extends React.Component {
                         this.setModalVisible(!modalVisible);
                     }}>
                     <RateApp
+                        onRateApp = {
+                            () => this.setModalVisible(!modalVisible)
+                        }
                         onPressLater={() => {
                             this.setModalVisible(!modalVisible)
                         }}

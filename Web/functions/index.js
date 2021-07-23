@@ -6,6 +6,7 @@ const cors = require('cors')({origin: true});
 
 const http = require('http');
 const stripe = require('stripe')('sk_test_51IynTvDzq3GsLlpcwWOE8Ckj8wbkUsIIgYlXNYNQWU4LHpSim23juI2mnvyNQmlYVGgsDKm3azkSr71jtCQ60EM100AbV4rMAG');
+//const stripe = require('stripe')('sk_test_51Gt3ScDR2RANHMr4itX8G9x94skms7RXgBw5Ir57TnC2mNNtoY0TfV1HGNEPmB6RdMXdl1dfTRaoLCzGEFGYyoIq00jfK9XihL');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions

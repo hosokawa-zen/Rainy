@@ -11,7 +11,7 @@ import {
   Image,
   TouchableOpacity,
   Modal,
-  Platform
+  Platform, KeyboardAvoidingView,
 } from 'react-native';
 import React from 'react';
 
@@ -36,7 +36,6 @@ class SignUpScreen extends React.Component {
       modalVisible: false,
       view: 'this',
       showPassword: true,
-      password: '',
       checkValue: false,
       email: "",
       password: "",
@@ -51,7 +50,7 @@ class SignUpScreen extends React.Component {
 
   //================================ Navigation Functions ======================================//
 
-  
+
 
   signupWithEmailPassword = () => {
     try {
@@ -124,7 +123,7 @@ class SignUpScreen extends React.Component {
       this.props.navigation.navigate('TermsAndCondtions');
       this.setModalVisible(!this.state.modalVisible);
     }
-    
+
   }
 
   Privacy() {
@@ -154,7 +153,7 @@ class SignUpScreen extends React.Component {
   render() {
     const {modalVisible} = this.state;
     return (
-      <View style={styles.mainContainer}>
+      <KeyboardAvoidingView style={styles.mainContainer} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         {/* //================================ StatusBar ======================================// */}
         <StatusBar
           barStyle="dark-content"
@@ -313,10 +312,10 @@ class SignUpScreen extends React.Component {
           <TouchableOpacity
             onPress={() => {
               if (this.props && this.props.navigation) {
-                this.props.navigation.navigate('SocialLoginScreen')
+                this.props.navigation.navigate('LoginScreen')
               }
             }}>
-            <Text style={styles.textStyle}>Already have an account.</Text>
+            <Text style={styles.textStyle}>Already have an account?</Text>
           </TouchableOpacity>
         </View>
         {/* //================================ model ======================================// */}
@@ -337,7 +336,7 @@ class SignUpScreen extends React.Component {
             }}
           />
         </Modal>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

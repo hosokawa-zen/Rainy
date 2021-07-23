@@ -49,7 +49,7 @@ class RateApp extends React.Component{
 
                     <View style={styles.bottomButtons}>
 
-                        <TouchableOpacity style={styles.rateNowContainer}>
+                        <TouchableOpacity onPress={this.props.onRateApp} style={styles.rateNowContainer}>
                             <Text style={styles.submitBurron}>RATE APP</Text>
                         </TouchableOpacity>
                         <TouchableOpacity

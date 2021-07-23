@@ -256,7 +256,7 @@ class SignupWith extends React.Component {
                     <TouchableOpacity
                         onPress={() => {
                             if (this.props && this.props.navigation) {
-                                this.props.navigation.navigate('SocialLoginScreen');
+                                this.props.navigation.navigate('LoginScreen');
                             }
                         }}>
                         <Text style={styles.textStyle}>Already have an account?</Text>

@@ -1,11 +1,6 @@
-//================================ React Native Imported Files ======================================//
-import {
-    heightPercentageToDP as hp,
-    widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
-import {Text, Image, StatusBar, View, FlatList, ScrollView, Modal, Platform} from 'react-native';
+import {Text, StatusBar, View, FlatList, Modal} from 'react-native';
 import React from 'react';
-// import RNPaypal from 'react-native-paypal-lib';
+import { requestOneTimePayment } from 'react-native-paypal';
 import { CreditCardInput } from "react-native-credit-card-input";
 import stripe from 'react-native-stripe-payments';
 
@@ -19,10 +14,9 @@ import PaymentComponent from "../../Components/NewAppComponents/PaymentComponent
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 
-import RNProgressHud from 'progress-hud';
 import { Alert } from 'react-native';
 
-import { cloudUrl, stripeId, freemium } from '../../Global'
+import {cloudUrl, stripeId, freemium, brainTreeToken} from '../../Global';
 import RNFetchBlob from 'rn-fetch-blob';
 
 export default class Payment extends React.Component {
@@ -57,7 +51,7 @@ export default class Payment extends React.Component {
             this.feePrice = parseFloat(this.props.route.params.count) * parseFloat(this.props.route.params.price) * 0.05
             this.allPrice = this.totalPrice + this.feePrice;
         }
-        this.paypalId = 'Your PayPal ID';
+        this.brainTreeToken = brainTreeToken;
         stripe.setOptions({ publishingKey: stripeId });
 
         this.calculateRealPrice();
@@ -226,23 +220,23 @@ export default class Payment extends React.Component {
     }
 
     paypalPayment = async () => {
-        this.onSavePaid();
-        return
         try {
-            // RNPaypal.paymentRequest({
-            //     clientId: this.paypalId,
-            //     environment: RNPaypal.ENVIRONMENT.NO_NETWORK,
-            //     intent: RNPaypal.INTENT.SALE,
-            //     price: this.totalPrice + this.feePrice,
-            //     currency: 'USD',
-            //     description: `Android testing`,
-            //     acceptCreditCards: true
-            // }).then(response => {
-            //     this.onSavePaid();
-            //     console.log(response)
-            // }).catch(err => {
-            //     console.log(err.message)
-            // })
+            const resp = await requestOneTimePayment(
+                this.brainTreeToken,
+                {
+                    amount: (this.totalPrice + this.feePrice).toString(), // required
+                    // any PayPal supported currency (see here: https://developer.paypal.com/docs/integration/direct/rest/currency-codes/#paypal-account-payments)
+                    currency: 'USD',
+                    // any PayPal supported locale (see here: https://braintree.github.io/braintree_ios/Classes/BTPayPalRequest.html#/c:objc(cs)BTPayPalRequest(py)localeCode)
+                    localeCode: 'en_US',
+                    shippingAddressRequired: false,
+                    userAction: 'commit', // display 'Pay Now' on the PayPal review page
+                    // one of 'authorize', 'sale', 'order'. defaults to 'authorize'. see details here: https://developer.paypal.com/docs/api/payments/v1/#payment-create-request-body
+                    intent: 'sale',
+                }
+            );
+            this.onSavePaid();
+            this.setModalVisible(false)
         } catch (error) {
             console.log(error.message)
             alert(error.message)

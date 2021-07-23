@@ -21,7 +21,7 @@ const Styles = StyleSheet.create({
     },
     upperView:
     {
-        flex: 0.36,
+        flex: 0.3,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -35,8 +35,7 @@ const Styles = StyleSheet.create({
     {
         flex: 0.3,
         justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: wp(2)
+        alignItems: 'center'
     },
     lowerView:
     {
@@ -46,8 +45,8 @@ const Styles = StyleSheet.create({
     },
     imageStyles:
     {
-        height: '60%',
-        width: '60%',
+        height: 160,
+        width: 160,
         resizeMode: 'contain'
     },
     headingText:{

@@ -39,7 +39,7 @@ export default class MapScreen extends React.Component {
             location: ''
         }
         RNProgressHud.showWithStatus('Loading...')
-        
+
         Geolocation.getCurrentPosition(
             position => {
                 console.log(position)
@@ -57,7 +57,7 @@ export default class MapScreen extends React.Component {
         );
 
         this.promotions = [];
-        
+
     }
 
     getPromotion = () => {
@@ -67,59 +67,76 @@ export default class MapScreen extends React.Component {
                     const markers = [];
                     this.promotions = snapshot.val();
 
-                    database().ref(`business/`).once('value').then(snapshot2 => {
-                        var business = [];
-                        if (snapshot2.exists()) {
-                            business = snapshot2.val();
+                    database().ref("/transactions").on('value', snapshot1 => {
+                        var transactions = [];
+                        if (snapshot1.exists()) {
+                            transactions = snapshot1.val()
                         }
-                        Object.keys(this.promotions).map((key) => {
-                            var deal = this.promotions[key];
-                            if (deal.branchs) {
-                                var deal = this.promotions[key];
-                                var subTitle = "";
-                                if (business && business[deal.userBusinessId]) {
-                                    subTitle = business[deal.userBusinessId].name
-                                    console.log(subTitle)
-                                    deal.subTitle = subTitle;
-                                }
-                                Object.keys(deal.branchs).map((branchKey) => {
-                                    const branch = deal.branchs[branchKey];
-                                    markers.push({
-                                        lat: branch.lat,
-                                        lng: branch.lng,
-                                        address: branch.address,
-                                        deal,
+
+                        database().ref(`business/`).once('value').then(snapshot2 => {
+                            var business = [];
+                            if (snapshot2.exists()) {
+                                business = snapshot2.val();
+                            }
+                            Object.keys(this.promotions).map((key) => {
+                                let deal = this.promotions[key];
+                                var sellCount = 0;
+                                Object.keys(transactions).map(transKey => {
+                                    const transaction = transactions[transKey];
+                                    if (transaction.promotio_id == key) {
+                                        sellCount = sellCount + transaction.amount;
+                                    }
+                                })
+
+                                deal.paidCount = sellCount;
+
+                                if (deal.branchs) {
+                                    var subTitle = "";
+                                    if (business && business[deal.userBusinessId]) {
+                                        subTitle = business[deal.userBusinessId].name
+                                        console.log(subTitle)
+                                        deal.subTitle = subTitle;
+                                    }
+
+
+                                    Object.keys(deal.branchs).map((branchKey) => {
+                                        const branch = deal.branchs[branchKey];
+                                        markers.push({
+                                            lat: branch.lat,
+                                            lng: branch.lng,
+                                            address: branch.address,
+                                            deal,
+                                        })
                                     })
+                                }
+                            })
+                            this.setState({markers: markers})
+
+                            var tempMarkers = [];
+                            this.state.markers.forEach(marker => {
+                                tempMarkers.push({
+                                    latitude: marker.lat,
+                                    longitude: marker.lng,
+                                })
+                            })
+
+                            if (this.state.position.lat != 0 && this.state.position.lng != 0) {
+                                tempMarkers.push({
+                                    latitude: this.state.position.lat,
+                                    longitude: this.state.position.lng,
                                 })
                             }
+
+                            console.log(tempMarkers);
+
+                            const DEFAULT_PADDING = {top: 60, right: 60, bottom: 60, left: 60};
+                            this.map.fitToCoordinates(tempMarkers, {
+                                edgePadding: DEFAULT_PADDING,
+                                animated: true,
+                            });
+                            RNProgressHud.dismiss()
                         })
-                        this.setState({markers: markers})
-        
-                        var tempMarkers = [];
-                        this.state.markers.forEach(marker => {
-                            tempMarkers.push({
-                                latitude: marker.lat,
-                                longitude: marker.lng,
-                            })
-                        })
-        
-                        if (this.state.position.lat != 0 && this.state.position.lng != 0) {
-                            tempMarkers.push({
-                                latitude: this.state.position.lat,
-                                longitude: this.state.position.lng,
-                            })
-                        }
-        
-                        console.log(tempMarkers);
-        
-                        const DEFAULT_PADDING = { top: 60, right: 60, bottom: 60, left: 60 };
-                        this.map.fitToCoordinates(tempMarkers, {
-                            edgePadding: DEFAULT_PADDING,
-                            animated: true,
-                        });
-                        RNProgressHud.dismiss()
-                    })
-                    
+                    });
                 }
             })
         } catch (error) {
@@ -151,7 +168,7 @@ export default class MapScreen extends React.Component {
                     this.markerClick(branch);
                 }}
             >
-                
+
                 <Image source={images.ic_map_icon} style={{ height: wp(20), width: wp(20), resizeMode: 'contain' }} />
             </Marker>
           )) : <View />;
@@ -227,7 +244,7 @@ export default class MapScreen extends React.Component {
                         </View>
                     </View>
                 }
-                
+
             </View>
         );
     }

@@ -20,14 +20,12 @@ import {ThemeConsumer} from 'react-native-elements';
 class SettingsItem extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-
-      IsEnabled: false,
+      IsEnabled: true,
     };
   }
   toggleSwitch = () => {
-    this.setState({isEnabled: true});
+    this.setState({IsEnabled: !this.state.IsEnabled});
   };
   render() {
 
@@ -105,7 +103,7 @@ class SettingsItem extends React.Component {
           ) : null}
           {this.props.toggleSwitchButton ? (
             <Switch
-              trackColor={{false: colors.app_button_color, true: colors.app_button_color}}
+              trackColor={{false: colors.app_dark_grey, true: colors.app_button_color}}
               thumbColor={this.state.IsEnabled ? colors.white : colors.white}
               ios_backgroundColor={colors.app_button_color}
               onValueChange={this.toggleSwitch}

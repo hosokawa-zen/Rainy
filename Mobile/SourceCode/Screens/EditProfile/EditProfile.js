@@ -36,7 +36,7 @@ class EditProfile extends React.Component {
             uploadUri: "",
         }
 
-        
+
 
         auth().onAuthStateChanged((user) => {
             if (user) {
@@ -85,7 +85,7 @@ class EditProfile extends React.Component {
         };
         launchImageLibrary(options, (response) => {
             console.log('Response = ', response);
-          
+
             if (response.didCancel) {
               console.log('User cancelled image picker');
             } else if (response.error) {
@@ -129,7 +129,7 @@ class EditProfile extends React.Component {
     saveProfile = async () => {
         try {
             RNProgressHud.showWithStatus('Saving...')
-            if (this.state.uploadUri) {        
+            if (this.state.uploadUri) {
                 await new Promise((resolve, reject) => {
                     storage()
                     .ref(`users/${this.userId}/avatar.png`)
@@ -158,7 +158,7 @@ class EditProfile extends React.Component {
             update[`users/${this.userId}/position`] = this.state.position;
             update[`users/${this.userId}/avatar`] = this.state.avatar;
             database().ref().update(update);
-            console.log(update)
+            this.props.navigation.pop();
             RNProgressHud.dismiss()
         } catch (error) {
             alert(error)
@@ -188,7 +188,7 @@ class EditProfile extends React.Component {
                     <View style={styles.profilePicCotainer}>
                         <Image source={this.state.avatar != "" ? {uri: this.state.avatar} : images.no_user_image} style={styles.ImageStyles} />
                         <Button
-                            style={styles.selectButton} 
+                            style={styles.selectButton}
                             iconPlace={'left'}
                             icon={images.ic_camera_}
                             iconStyle={{

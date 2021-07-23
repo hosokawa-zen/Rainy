@@ -30,7 +30,6 @@ export default class BrowseAllDeals extends React.Component {
             name: "",
             email: "",
             avatar: "",
-            position: "",
             browseTitle: 'Browse All Deals',
             position: {
                 lat: 0,
@@ -67,7 +66,7 @@ export default class BrowseAllDeals extends React.Component {
                     database().ref("/promotions").on('value', snapshot => {
                         if (snapshot.exists()) {
                             var promotions = snapshot.val();
-                            
+
                             database().ref("/transactions").on('value', snapshot1 => {
                                 var transactions = [];
                                 if (snapshot1.exists()) {
@@ -83,7 +82,7 @@ export default class BrowseAllDeals extends React.Component {
                                         const deal = promotions[key];
                                         var totalLocations = 0;
                                         var remainedLocations = 0;
-                                        
+
                                         var distance = 6371
                                         if (deal.branchs) {
                                             console.log(deal.branchs)
@@ -155,17 +154,17 @@ export default class BrowseAllDeals extends React.Component {
     getDistanceFromLatLonInKm = (lat1,lon1,lat2,lon2) => {
         var R = 6371; // Radius of the earth in km
         var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
-        var dLon = this.deg2rad(lon2-lon1); 
-        var a = 
+        var dLon = this.deg2rad(lon2-lon1);
+        var a =
           Math.sin(dLat/2) * Math.sin(dLat/2) +
-          Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
+          Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
           Math.sin(dLon/2) * Math.sin(dLon/2)
-          ; 
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+          ;
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
         var d = R * c; // Distance in km
         return d;
       }
-      
+
       deg2rad = (deg) => {
         return deg * (Math.PI/180)
       }

@@ -17,6 +17,8 @@ import colors from '../../../../Assets/Colors/colors';
 import images from '../../../../Assets/Images/images';
 import styles from "./Styles";
 import CheckBox from '../../../../Components/CheckBox/CheckBox';
+import database from '@react-native-firebase/database';
+import {Constants} from '../../../../Constants';
 
 
 
@@ -39,7 +41,7 @@ class LoginScreen extends React.Component {
                 this.setState({email: email})
                 this.setState({password: password})
                 this.setState({remember: true})
-            } 
+            }
         })
     }
     rememberPassword = () => {
@@ -60,22 +62,54 @@ class LoginScreen extends React.Component {
         }
     }
 
+    validateEmail = (email) => {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    isValid = () => {
+        if(this.state.email.length ===0){
+            alert('Please enter email address.');
+            return false;
+        }
+        if(!this.validateEmail(this.state.email)){
+            alert('Please enter valid email.');
+            return false;
+        }
+        if(this.state.password.length ===0){
+            alert('Please enter password.');
+            return false;
+        }
+        return true;
+    }
+
     toggleLogin() {
+        if(!this.isValid()){
+            return;
+        }
         try {
             RNProgressHud.showWithStatus("Loading...");
             auth()
                 .signInWithEmailAndPassword(this.state.email, this.state.password)
-                .then(() => {
-                    console.log('User account created & signed in!');
-                    if (this.state.remember) {
-                        AsyncStorage.setItem('email', this.state.email);
-                        AsyncStorage.setItem('password', this.state.password);
-                        AsyncStorage.setItem('remember', '1');
-                    }
-                    if (this.props && this.props.navigation) {
-                        this.props.navigation.navigate('drawer')
-                    }
-                    RNProgressHud.dismiss();
+                .then((credential) => {
+                    console.log('User account created & signed in!', credential);
+                    const user = credential.user;
+                    database().ref(`users/${user.uid}/`).once('value').then(snapshot => {
+                        if (snapshot.exists()) {
+                            const user = snapshot.val();
+                            console.log('user', user);
+                            Constants.user = user;
+                            if (this.state.remember) {
+                                AsyncStorage.setItem('email', this.state.email);
+                                AsyncStorage.setItem('password', this.state.password);
+                                AsyncStorage.setItem('remember', '1');
+                            }
+                            if (this.props && this.props.navigation) {
+                                this.props.navigation.navigate('drawer')
+                            }
+                            RNProgressHud.dismiss();
+                        }
+                    });
                 })
                 .catch(error => {
                     RNProgressHud.dismiss();
@@ -126,7 +160,7 @@ class LoginScreen extends React.Component {
                         marginTop={5}
                         borderRadius={wp(1)}
                         backgroundColor={colors.app_header_color}
-                        placeholderTextColor={colors.white}                    />
+                        placeholderTextColor={colors.grey}                    />
                      {/* //================================ Password Input ======================================// */}
                     <AppInput
                         value = {this.state.password}
@@ -143,7 +177,7 @@ class LoginScreen extends React.Component {
                         rightIconSize={wp(5)}
                         marginBottom={wp(3)}
                         backgroundColor={colors.app_header_color}
-                        placeholderTextColor={colors.white}
+                        placeholderTextColor={colors.grey}
                         rightIconPath={images.ic_eye}
                         tintColor={colors.app_light_blue}
                     />

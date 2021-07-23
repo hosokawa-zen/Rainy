@@ -27,7 +27,7 @@ export default class NintendoSwitch extends React.Component {
             dealOwner:false,
             dealQuantityView:false,
             totalItemView:false,
-            dealsLeft:true,
+            dealsLeft:false,
             terms:true,
             contactInfo:true,
             participatingBranches:true,
@@ -62,7 +62,7 @@ export default class NintendoSwitch extends React.Component {
                         if (snapshot.exists()) {
                             var user = snapshot.val();
                             database().ref(`business/${user.business_id}`).once('value').then(snapshot2 => {
-                                
+
                                 if (snapshot2.exists()) {
                                     var business = snapshot2.val();
                                     if (dealData.userId && business) {
@@ -109,7 +109,7 @@ export default class NintendoSwitch extends React.Component {
                 console.log(this.props.route.params.item.deal)
             } else {
                 if (this.props && this.props.navigation) {
-                    this.props.navigation.navigate("SocialLoginScreen")
+                    this.props.navigation.navigate("LoginScreen")
                 }
             }
         });
@@ -118,16 +118,16 @@ export default class NintendoSwitch extends React.Component {
     onPressUse(item) {
         try {
          const key = item.transaction_id;
- 
+
          var dateObj = new Date();
          var month = dateObj.getUTCMonth() + 1; //months from 1-12
          var day = dateObj.getUTCDate();
          var year = dateObj.getUTCFullYear();
          var hour = dateObj.getHours()
          var min = dateObj.getMinutes()
- 
+
          var newdate = year + "/" + month + "/" + day + " " + hour + ":" + min;
- 
+
          var updates = {};
          updates['transactions/'+ key + "/date_used"] = newdate;
          database().ref().update(updates);
@@ -138,7 +138,8 @@ export default class NintendoSwitch extends React.Component {
 
     onPressBuyNow = () => {
         if(this.state.buttonTitle === 'Buy Now') {
-            if (this.state.dealData.dealsPerUser <= this.state.dealData.paidCount) {
+            console.log('deals', this.state.dealData.dealsPerUser, this.state.dealData.paidCount);
+            if (0 && this.state.dealData.dealsPerUser <= this.state.dealData.paidCount) {
                 alert("User purchased a limited count of deals")
             } else {
                 this.setState({
@@ -252,7 +253,7 @@ export default class NintendoSwitch extends React.Component {
                                     <Image style={[styles.img,{marginLeft:wp(3)}]} source={images.ic_coupon_unselected} />
                                 </View>
                             </View> }
-                            {this.state.dealDescription && 
+                            {this.state.dealDescription &&
                                 <CustomAccordion
                                     title={'Deal Descriptions'}
                                     content = {

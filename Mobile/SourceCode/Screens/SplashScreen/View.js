@@ -1,13 +1,15 @@
 //================================ React Native Imported Files ======================================//
 
-import { ImageBackground, StatusBar,Image, View } from 'react-native';
+import {Image, StatusBar, View} from 'react-native';
 import React from 'react';
 
 //================================ Local Imported Files ======================================//
-
 import styles from './Styles';
 import Colors from '../../Assets/Colors/colors';
 import images from '../../Assets/Images/images';
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
+import {Constants} from '../../Constants';
 
 
 class SplashScreen extends React.Component {
@@ -16,7 +18,20 @@ class SplashScreen extends React.Component {
 
     componentDidMount() {
         setTimeout(() => {
-            this.props.navigation.navigate('OnBoarding');
+            auth().onAuthStateChanged((user) => {
+                if (user) {
+                    console.log('user is logged');
+                    const userId = user.uid;
+                    database().ref(`users/${userId}/`).once('value').then(snapshot => {
+                        if (snapshot.exists()) {
+                            Constants.user = snapshot.val();
+                            this.props.navigation.navigate("drawer")
+                        }
+                    })
+                } else {
+                    this.props.navigation.navigate("OnBoarding")
+                }
+            });
         }, 1500);
     }
     render() {

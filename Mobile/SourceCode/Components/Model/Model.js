@@ -1,15 +1,13 @@
 import React from 'react';
 import {View, Text, Image, ImageBackground, StatusBar, StyleSheet, TouchableOpacity, Platform} from 'react-native';
-import { Divider, SocialIcon } from 'react-native-elements';
+import {Divider, SocialIcon} from 'react-native-elements';
 
 import Modal from 'react-native-modal';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import colors from '../../Assets/Colors/colors';
 
 
-
 class MyModel extends React.Component {
-
 
 
     render() {
@@ -20,7 +18,7 @@ class MyModel extends React.Component {
                 <View style={styles.conatiner}>
 
 
-                    <View style={styles.mainModelContainer} >
+                    <View style={styles.mainModelContainer}>
                         <View style={styles.ModelTitleContainer}>
                             <Text style={styles.ModelTitleTextContainer}>
                                 Sign Up
@@ -30,39 +28,37 @@ class MyModel extends React.Component {
                         <View style={styles.ModelMessageContainer}>
                             <View style={styles.ModelMessageBothContainer}>
                                 <View style={styles.ModelMessageSimpleContainer}>
-                                    <Text style={styles.modelText}>
-                                        By Signing Up, you agree with the
-                            </Text>
+                                    <Text style={styles.modelText}>By Signing Up, you agree with the </Text>
 
                                 </View>
 
 
                                 <TouchableOpacity style={styles.ModelMessageColorContainer}
-                                    onPress={this.props.onPressTerm}>
-                                    <Text style={styles.ModelMessageTextColorContainer}>
-                                        Terms
-                            </Text>
+                                                  onPress={this.props.onPressTerm}>
+                                    <Text style={styles.ModelMessageTextColorContainer}>Terms</Text>
 
                                 </TouchableOpacity>
 
-                            </View>
-
-
-                            <View style={styles.ModelMessageBothTwoContainer}>
-                                <TouchableOpacity style={styles.ModelMessageAndConditionContainer}
-                                    onPress={this.props.onPressCondition}
-                                >
-                                    <Text style={styles.ModelMessageTextColorContainer}>and Conditions</Text>
-
-                                </TouchableOpacity>
                                 <View style={styles.ModelMessageAndContainer}>
-                                    <Text style={styles.modelText}>and </Text>
+                                    <Text style={styles.modelText}> and </Text>
+
+                                </View>
+
+                                <TouchableOpacity style={styles.ModelMessageAndConditionContainer}
+                                                  onPress={this.props.onPressCondition}
+                                >
+                                    <Text style={styles.ModelMessageTextColorContainer}>Conditions</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.ModelMessageBothTwoContainer}>
+                                <View style={styles.ModelMessageAndContainer}>
+                                    <Text style={styles.modelText}> and </Text>
 
                                 </View>
 
 
                                 <TouchableOpacity style={styles.ModelMessagePrivacyContainer}
-                                    onPress={this.props.onPressPrivacy}
+                                                  onPress={this.props.onPressPrivacy}
                                 >
                                     <Text style={styles.ModelMessageTextColorContainer}>Privacy Policy </Text>
 
@@ -74,7 +70,7 @@ class MyModel extends React.Component {
                         </View>
                         <View style={styles.buttonViewContainer}>
                             <View style={styles.okViewContainer}>
-                                <TouchableOpacity onPress={this.props.onPressAgree} >
+                                <TouchableOpacity onPress={this.props.onPressAgree}>
                                     <Text style={styles.AgreeTextStyleContainer}>
                                         AGREE
                                     </Text>
@@ -93,7 +89,6 @@ class MyModel extends React.Component {
                         </View>
 
 
-
                     </View>
                 </View>
             </View>
@@ -110,65 +105,46 @@ const styles = StyleSheet.create({
 
     },
     modelText:
-    {
-        fontSize: Platform.OS === 'ios' ? wp(3.8) : wp(3.0),
+        {
+            fontSize: Platform.OS === 'ios' ? wp(3.8) : wp(3.0),
 
-    },
+        },
     mainModelContainer: {
         height: wp(40),
         width: '90%',
-        backgroundColor: "white",
+        backgroundColor: 'white',
         alignItems: 'center',
         alignSelf: 'center',
-
 
 
     },
     ModelMessageTextColorContainer: {
         color: colors.app_header_color,
         fontSize: Platform.OS === 'ios' ? wp(3.8) : wp(3.0),
-
     },
     ModelMessageColorContainer: {
-        height: hp(3.5),
-        width: '20%',
+        height: '100%',
         alignItems: 'flex-start',
-        justifyContent:'center',
-        // backgroundColor:"red"
-
-
     },
     ModelMessagePrivacyContainer: {
         height: '100%',
-        width: '37%',
-        alignItems: "flex-start"
-
-
+        alignItems: 'flex-start',
     },
     ModelMessageAndContainer: {
         height: '100%',
-        width: '9%',
         alignItems: 'flex-start',
 
     },
     ModelMessageAndConditionContainer: {
         height: '100%',
-        width: wp(27),
         alignItems: 'flex-start',
-
-
-
-
-
-
     },
     ModelMessageBothTwoContainer: {
         height: wp(7),
         width: '100%',
         flexDirection: 'row',
 
-        alignItems: 'flex-start'
-
+        alignItems: 'flex-start',
 
 
     },
@@ -180,31 +156,25 @@ const styles = StyleSheet.create({
     ModelTitleContainer: {
         height: wp(11),
         width: '90%',
-        justifyContent: "center",
-
+        justifyContent: 'center',
 
 
     },
     conatiner:
-    {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent'
-    },
+        {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'transparent',
+        },
     ModelMessageSimpleContainer: {
         height: '100%',
-        width:Platform.OS === 'ios' ? '74%' : '70%',
-// backgroundColor:"pink"
-
-
     },
     ModelMessageContainer: {
         height: wp(14),
         width: '90%',
 
-        justifyContent: 'center'
-
+        justifyContent: 'center',
 
 
     },
@@ -212,15 +182,13 @@ const styles = StyleSheet.create({
         height: wp(6),
         width: '100%',
         flexDirection: 'row',
-
-        alignItems: "flex-end"
-
-
+        alignItems: 'flex-end',
+        flex: 1
     },
     ModelTitleTextContainer: {
         fontWeight: 'bold',
         fontSize: wp(4.5),
-        color: colors.app_dark_grey
+        color: colors.app_dark_grey,
 
     },
     rateTextStyleContainer: {
@@ -238,8 +206,8 @@ const styles = StyleSheet.create({
     rateViewContainer: {
         height: '15%',
         width: '100%',
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
 
     },
     secondTextViewContainer: {
@@ -251,33 +219,28 @@ const styles = StyleSheet.create({
     socialViewContainer: {
         height: '15%',
         width: '80%',
-        flexDirection: "row",
+        flexDirection: 'row',
 
-        justifyContent: 'center'
+        justifyContent: 'center',
 
 
     },
     secondTextStyleContainer: {
         color: 'black',
-        textAlign: 'center'
+        textAlign: 'center',
     },
     buttonViewContainer: {
         height: wp(15),
         width: '90%',
-        flexDirection: "row",
-
-
-
-
-
+        flexDirection: 'row',
 
 
     },
     CancelViewContainer: {
         height: '100%',
         width: '30%',
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
         alignSelf: 'center',
         alignContent: 'center',
 
@@ -290,7 +253,6 @@ const styles = StyleSheet.create({
         paddingRight: 4,
 
     },
-
 
 
 });

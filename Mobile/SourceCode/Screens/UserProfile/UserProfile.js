@@ -63,51 +63,49 @@ export default class UserProfile extends React.Component {
                                     listTransactionItems = [];
                                     listItemsExpired = [];
                                     var promotions = snapshot2.val();
-                                    Object.keys(transactions).map((key, index) => {
+                                    Object.keys(transactions).forEach((key, index) => {
                                         const trans = transactions[key];
                                         if (trans.promotio_id && promotions[trans.promotio_id]) {
                                             if (!promotions[trans.promotio_id].paidCount) {
                                                 promotions[trans.promotio_id].paidCount = 0;
                                             }
-                                        }
-                                        promotions[trans.promotio_id].paidCount += trans.amount;
-                                    })
-                                    Object.keys(transactions).map((key, index) => {
-                                        const trans = transactions[key];
-                                        const promt = promotions[trans.promotio_id];
-                                        const transload = {
-                                            id: index,
-                                            image: {uri: promt.imageLink},
-                                            text: `Purchased ${promt.name} for $${trans.allPrice} with promotion code ${trans.reference_code}. you saved 10% from the actual price!`
-                                        }
-                                        if (trans && trans.user_id == this.userId) {
-                                            listTransactionItems.push(transload)
-                                        }
-                                        if (trans && promt && trans.user_id == this.userId) {
+                                            promotions[trans.promotio_id].paidCount += trans.amount;
 
-                                            const load = {
-                                                transaction_id: key,
-                                                code: trans.reference_code,
-                                                status: trans.deal_status,
-                                                hightlight: trans.hightlight,
-                                                hidden: trans.hidden,
+                                            const promt = promotions[trans.promotio_id];
+                                            const transload = {
                                                 id: index,
                                                 image: {uri: promt.imageLink},
-                                                title: promt.name,
-                                                subTitle: user.position,
-                                                text: promt.description,
-                                                rightIcon: trans.hightlight ? images.ic_tagged : images.ic_tag_2,
-                                                quantity: `${trans.amount}/${promt.paidCount}`,
-                                                price: promt.promotionPrice,
-                                                lockText:`Locked ${trans.date_of_purchase}`,
-                                                valid: `Valid ${promt.validaty2}`,
-                                                deal: promt,
+                                                text: `Purchased ${promt.name} for $${trans.allPrice} with promotion code ${trans.reference_code}. you saved 10% from the actual price!`
                                             }
-                                            if (promt.validaty2 >= currentDate) {
-                                                listItems.push(load);
-                                            } else {
-                                                if (!load.hidden) {
-                                                    listItemsExpired.push(load);
+                                            if (trans && trans.user_id == this.userId) {
+                                                listTransactionItems.push(transload)
+                                            }
+                                            if (trans && promt && trans.user_id == this.userId) {
+
+                                                const load = {
+                                                    transaction_id: key,
+                                                    code: trans.reference_code,
+                                                    status: trans.deal_status,
+                                                    hightlight: trans.hightlight,
+                                                    hidden: trans.hidden,
+                                                    id: index,
+                                                    image: {uri: promt.imageLink},
+                                                    title: promt.name,
+                                                    subTitle: user.position,
+                                                    text: promt.description,
+                                                    rightIcon: trans.hightlight ? images.ic_tagged : images.ic_tag_2,
+                                                    quantity: `${trans.amount}/${promt.paidCount}`,
+                                                    price: promt.promotionPrice,
+                                                    lockText:`Locked ${trans.date_of_purchase}`,
+                                                    valid: `Valid ${promt.validaty2}`,
+                                                    deal: promt,
+                                                }
+                                                if (promt.validaty2 >= currentDate) {
+                                                    listItems.push(load);
+                                                } else {
+                                                    if (!load.hidden) {
+                                                        listItemsExpired.push(load);
+                                                    }
                                                 }
                                             }
                                         }
@@ -150,8 +148,8 @@ export default class UserProfile extends React.Component {
                                     listItemsExpired.push(value)
                                 })
 
-                                this.setState({listTransactionItems, listTransactionItems})
-                                this.setState({listItemsExpired, listItemsExpired})
+                                this.setState({listTransactionItems: listTransactionItems})
+                                this.setState({listItemsExpired: listItemsExpired})
                                 this.staticListItems = [...listItems]
                                 this.refreshListItems()
                                 RNProgressHud.dismiss()
