@@ -238,7 +238,7 @@ export default class Payment extends React.Component {
             this.onSavePaid();
             this.setModalVisible(false)
         } catch (error) {
-            console.log(error.message)
+            console.log('error', error)
             alert(error.message)
         }
     }

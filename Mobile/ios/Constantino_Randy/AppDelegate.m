@@ -6,6 +6,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <React/RCTLinkingManager.h>
 #import <Firebase.h>
+#import "RNPaypal.h"
 
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
@@ -53,6 +54,7 @@ static void InitializeFlipper(UIApplication *application) {
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   [FBSDKApplicationDelegate initializeSDK:launchOptions];
+  [[RNPaypal sharedInstance] configure];
    return YES;
 }
 
@@ -63,5 +65,19 @@ static void InitializeFlipper(UIApplication *application) {
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
+}
+
+// if you support only iOS 9+, add the following method
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+  return [[RNPaypal sharedInstance] application:application openURL:url options:options];
+}
+
+// otherwise, if you support iOS 8, add the following method
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+  return [[RNPaypal sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 @end

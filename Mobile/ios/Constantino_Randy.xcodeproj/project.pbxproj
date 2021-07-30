@@ -360,7 +360,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 9LYPE5V96D;
+						DevelopmentTeam = 73NRM5JN65;
 						LastSwiftMigration = 1250;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -474,6 +474,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Constantino_Randy-Constantino_RandyTests/Pods-Constantino_Randy-Constantino_RandyTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Braintree/Braintree-UI-Localization.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Braintree/Braintree-Drop-In-Localization.bundle",
 				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
@@ -499,6 +501,8 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Braintree-UI-Localization.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Braintree-Drop-In-Localization.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
@@ -627,6 +631,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Constantino_Randy/Pods-Constantino_Randy-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Braintree/Braintree-UI-Localization.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Braintree/Braintree-Drop-In-Localization.bundle",
 				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
@@ -652,6 +658,8 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Braintree-UI-Localization.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Braintree-Drop-In-Localization.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
@@ -829,8 +837,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Constantino_Randy/Constantino Randy.entitlements";
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9LYPE5V96D;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = 73NRM5JN65;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Constantino_Randy/Info.plist;
@@ -841,7 +849,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.brainyapps.deallockerdev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brainyapps.deallocker;
 				PRODUCT_NAME = "Constantino Randy";
 				SWIFT_OBJC_BRIDGING_HEADER = "Constantino_Randy-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -857,8 +865,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Constantino_Randy/Constantino Randy.entitlements";
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9LYPE5V96D;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = 73NRM5JN65;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Constantino_Randy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

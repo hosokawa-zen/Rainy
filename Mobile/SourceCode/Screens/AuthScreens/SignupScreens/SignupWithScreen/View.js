@@ -56,7 +56,6 @@ class SignupWith extends React.Component {
             }
         } catch (error) {
             console.log(error);
-            alert(error.message);
             if (error.code === statusCodes.SIGN_IN_CANCELLED) {
                 // user cancelled the login flow
             } else if (error.code === statusCodes.IN_PROGRESS) {
@@ -110,7 +109,6 @@ class SignupWith extends React.Component {
             this.setModalVisible(true);
         } catch (error) {
             console.log(error);
-            alert(error.message);
         }
     };
 
@@ -135,9 +133,6 @@ class SignupWith extends React.Component {
             this.saveUser(userCredential);
             this.setModalVisible(true);
         } catch (error) {
-            if (error && error.message) {
-                alert(error.message);
-            }
         }
     };
 

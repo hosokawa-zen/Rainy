@@ -34,7 +34,7 @@ target 'Constantino_Randy' do
 
   pod 'SVProgressHUD'
 
-  # pod 'RNPaypal', :path => '../node_modules/react-native-paypal-lib/ios'
+  pod 'Braintree/DataCollector'
 
   pod 'react-native-stripe-payments', :path => '../node_modules/react-native-stripe-payments'
 

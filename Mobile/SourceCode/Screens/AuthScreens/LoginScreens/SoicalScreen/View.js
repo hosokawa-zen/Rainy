@@ -90,7 +90,6 @@ class SocialLogin extends React.Component {
                 }
             });
         } catch (error) {
-            alert(JSON.stringify(error));
         }
     };
 
@@ -117,7 +116,6 @@ class SocialLogin extends React.Component {
             this.checkUser();
         } catch (error) {
             console.log(error);
-            alert(error.message);
         }
     };
 
