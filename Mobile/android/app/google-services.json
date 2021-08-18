@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "541669291562-fmel5m1mgbs2pgachm6nkrvefgicbnfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brainyapps.deallocker",
+            "certificate_hash": "a944fb50f55fd82fee79f68402965e4b424704ba"
+          }
+        },
+        {
           "client_id": "541669291562-ukjg5lou465dopop61nj0sgnaqb1cc4q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

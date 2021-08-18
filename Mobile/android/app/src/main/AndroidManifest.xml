@@ -16,6 +16,8 @@
             android:usesCleartextTraffic="true"
             android:allowBackup="false"
             tools:replace="android:allowBackup"
+            android:requestLegacyExternalStorage="true"
+            android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
                 android:name=".MainActivity"
