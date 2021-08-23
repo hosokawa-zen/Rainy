@@ -57,7 +57,7 @@ class AboutApp extends React.Component {
 
                     </View>
                     <View style={styles.uperText3View}>
-                        <Text style={styles.VersionTextStyle}>Developer Name Inc.</Text>
+                        <Text style={styles.VersionTextStyle}>BrainyApps Inc.</Text>
 
                     </View>
 

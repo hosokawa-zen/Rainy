@@ -22,11 +22,10 @@ import MyModel from '../../../../Components/Model/Model';
 import styles from './Styles';
 
 import {GoogleSignin, statusCodes} from '@react-native-google-signin/google-signin';
-// import  {FBLoginManager} from 'react-native-facebook-login';
-import {appleAuth, appleAuthAndroid} from '@invertase/react-native-apple-authentication';
+import {appleAuth} from '@invertase/react-native-apple-authentication';
 import 'react-native-get-random-values';
-import {v4 as uuid} from 'uuid';
-import {AccessToken, LoginManager, Settings} from 'react-native-fbsdk-next';
+import {LoginManager, AccessToken} from 'react-native-fbsdk-next';
+import {Constants} from "../../../../Constants";
 
 class SocialLogin extends React.Component {
     constructor(props) {
@@ -80,9 +79,11 @@ class SocialLogin extends React.Component {
                     const user = snapshot.val();
                     if (user.term_accepted) {
                         if (this.props && this.props.navigation) {
+                            Constants.user = user;
                             this.props.navigation.navigate('drawer');
                         }
                     } else {
+                        Constants.user = user;
                         this.setModalVisible(true);
                     }
                 } else {
@@ -168,6 +169,7 @@ class SocialLogin extends React.Component {
             update[`users/${this.userId}/term_accepted`] = true;
             database().ref().update(update);
             if (this.props && this.props.navigation) {
+                Constants.user.term_accepted = true;
                 this.props.navigation.navigate('drawer');
                 this.setModalVisible(!this.state.modalVisible);
             }
