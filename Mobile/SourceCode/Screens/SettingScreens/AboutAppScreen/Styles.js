@@ -22,7 +22,7 @@ const Styles = StyleSheet.create({
         flex: 0.09
     },
     uperView: {
-        flex: 0.5,
+        flex: 0.43,
         backgroundColor: colors.appDarkBlue,
 
     },
@@ -84,7 +84,7 @@ const Styles = StyleSheet.create({
 
     },
     BottomTextView: {
-        flex: 0.3,
+        flex: 0.4,
         backgroundColor: colors.white,
         paddingHorizontal: wp(8),
         paddingTop: wp(4)
