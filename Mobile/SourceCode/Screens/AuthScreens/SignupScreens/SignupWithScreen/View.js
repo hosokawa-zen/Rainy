@@ -20,7 +20,7 @@ import images from '../../../../Assets/Images/images';
 import MyModel from '../../../../Components/Model/Model';
 import styles from './Styles';
 import database from '@react-native-firebase/database';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {GoogleSignin, statusCodes} from '@react-native-google-signin/google-signin';
 import {LoginManager, AccessToken} from 'react-native-fbsdk-next';
 import appleAuth from '@invertase/react-native-apple-authentication';
 import 'react-native-get-random-values';
