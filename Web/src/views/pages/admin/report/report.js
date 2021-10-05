@@ -22,7 +22,6 @@ const Reports = () => {
       if (snapshot.exists) {
         database.ref('users/').get().then((snapshot2) => {
           if (snapshot2.exists) {
-            debugger
             const items = [];
             const reportArray = snapshot.val();
             const userArray = snapshot2.val();
@@ -34,7 +33,7 @@ const Reports = () => {
                 if (user && reporter) {
                   const data = {
                     user_id : report.user_id,
-                    user_name: user.name, 
+                    user_name: user.name,
                     reporter_id: report.reporter_id,
                     reporter_name: reporter.name,
                     avatar: user.avatar
@@ -58,18 +57,18 @@ const Reports = () => {
   }
 
   useEffect(() => {
-    
+
     auth.onAuthStateChanged((user) => {
       setIsLoader(true)
       if (!user) {
-        history.replace("/login/")
+        //history.replace("/login/")
       } else {
         database.ref('users/' + user.uid).get().then((snapshot) => {
           if (snapshot.exists()) {
             const userData = snapshot.val();
             refreshReports();
             if (userData.role != 1) {
-              history.replace("/login/")
+              // history.replace("/login/")
             }
           }
         })
@@ -93,7 +92,7 @@ const Reports = () => {
       }
       <CCard>
         <CCardBody>
-        <div className="today-show-content"> 
+        <div className="today-show-content">
           <div className="today-show"><div className="line"></div><div className="today">TODAY</div><div className="line"></div></div>
         </div>
         <table className="table table-hover table-outline mb-0 d-none d-sm-table">
@@ -107,10 +106,12 @@ const Reports = () => {
                     </td>
                     <td className="name-content">
                       <Link
-                      // to={"/admin/users/" + data.user_id}
-                      >{data.user_name}</Link> reported the user profile 
+                        // to={"/admin/users/" + data.user_id}
+                        to={"#"}
+                      >{data.user_name}</Link> reported the user profile
                       <Link
                       // to={"/admin/users/" + data.reporter_id}
+                        to={"#"}
                       >{data.reporter_name}</Link>
                     </td>
                   </tr>

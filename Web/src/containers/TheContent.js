@@ -8,7 +8,7 @@ import { CContainer, CFade } from '@coreui/react'
 
 // routes config
 import routes from '../routes'
-  
+
 const loading = (
   <div className="pt-3 text-center">
     <div className="sk-spinner sk-spinner-pulse"></div>
@@ -35,8 +35,8 @@ const TheContent = () => {
                   )} />
               )
             })}
-            <Redirect from="/" to="/dashboard" />
             <Redirect from="/admin" to="/admin/reports" />
+            <Redirect from="/" to="/dashboard" />
           </Switch>
         </Suspense>
       </CContainer>

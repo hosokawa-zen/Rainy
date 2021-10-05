@@ -96,7 +96,7 @@ const AddPromotions = () => {
     const [showGoogle, setShowGoogle] = useState(false)
 
     const [leftTitle, setLeftTitle] =  useState("")
-    
+
     const history = useHistory();
 
     refreshCount++;
@@ -111,7 +111,7 @@ const AddPromotions = () => {
         auth.onAuthStateChanged((user) => {
             setIsLoader(true);
             if (!user) {
-              history.replace("/login/")
+              // history.replace("/login/")
             } else {
                 userId = user.uid
                 database.ref('users/' + user.uid).get().then((snapshot) => {
@@ -132,7 +132,7 @@ const AddPromotions = () => {
                             setIsLoader(false);
                         })
                         if (userData.role != 2) {
-                            history.replace("/login/")
+                            //history.replace("/login/")
                         }
                     } else {
 
@@ -140,7 +140,7 @@ const AddPromotions = () => {
                 })
             }
         })
-        
+
         EventEmitter.subscribe('preview-promotion', event => {
             var totalCount = 0;
             var remainCount = 0;
@@ -207,7 +207,7 @@ const AddPromotions = () => {
         setIsLoader(false);
         history.replace('/deals/')
     }
- 
+
     const handleImageSelect = (e) => {
         setImageSrc(URL.createObjectURL(e.target.files[0]))
         setImageFile(e.target.files[0]);
@@ -252,7 +252,6 @@ const AddPromotions = () => {
         Geocode.setApiKey(googleAPIKey);
         Geocode.fromLatLng(branchSelectedLat, branchSelectedLng).then(
             (response) => {
-                debugger;
                 const address = response.results[0].formatted_address;
                 console.log(address);
                 const newBranch = [...branchs];
@@ -272,7 +271,7 @@ const AddPromotions = () => {
         );
         setShowGoogle(false)
     }
-    
+
     return (
         <div className="addpromotions">
             {
@@ -287,7 +286,7 @@ const AddPromotions = () => {
                     </div>
                 </div>
             }
-            
+
             <CRow>
                 <CCol md="6" sm="12">
                     <CCard>
@@ -324,10 +323,10 @@ const AddPromotions = () => {
                             <div className="title-input mt-2 mb-3">
                                 <CLabel className="company-logo company-logo-empty-label" htmlFor="company-logo"></CLabel>
                                 <CFormGroup variant="custom-checkbox" className="mr-0" inline>
-                                    <CInputCheckbox 
-                                        custom 
-                                        id="compnay-logo-checkbox" 
-                                        name="compnay-logo-checkbox" 
+                                    <CInputCheckbox
+                                        custom
+                                        id="compnay-logo-checkbox"
+                                        name="compnay-logo-checkbox"
                                         checked={companyLogo}
                                         onChange={() => {setCompanyLogo(!companyLogo)}}
                                     />
@@ -338,7 +337,7 @@ const AddPromotions = () => {
                                 <CLabel htmlFor="promotional-price">Participating Branches</CLabel>
                                 <div className="promotional-list-content">
                                     {
-                                        
+
                                         branchs.map((branch, index) => {
                                             return (<div key={index} className="promotional-content">
                                                 <CLabel className="part-branches" htmlFor="promotional-price">{index + 1}</CLabel>
@@ -405,10 +404,10 @@ const AddPromotions = () => {
                             <div className="title-input mt-2">
                                 <CLabel className="company-logo-empty-label" htmlFor="company-logo"></CLabel>
                                 <CFormGroup variant="custom-checkbox" className="mr-0" inline>
-                                    <CInputCheckbox 
-                                        custom 
-                                        id="company-info-checkbox" 
-                                        name="company-info-checkbox" 
+                                    <CInputCheckbox
+                                        custom
+                                        id="company-info-checkbox"
+                                        name="company-info-checkbox"
                                         checked={companyInfo}
                                         onChange={() => {setCompanyInfo(!companyInfo)}}
                                     />
@@ -419,9 +418,9 @@ const AddPromotions = () => {
                     </CCard>
                 </CCol>
             </CRow>
-            
+
         <CModal
-          show={preview} 
+          show={preview}
           onClose={() => setPreview(!preview)}
           centered
           className="mobile-preview-model"
@@ -482,7 +481,7 @@ const AddPromotions = () => {
                           </CCol>
                         </CRow>
                         {
-                                        
+
                             branchs.map((branch, index) => {
                                 return (
                                     <CLabel className="details-label mb-0" >{branch.address}</CLabel>
@@ -510,7 +509,7 @@ const AddPromotions = () => {
         </CModal>
 
         <CModal
-          show={showGoogle} 
+          show={showGoogle}
           onClose={() => setShowGoogle(!showGoogle)}
           centered
           className="google-preview-modal"
@@ -531,7 +530,7 @@ const AddPromotions = () => {
             </CCard>
           </CModalBody>
         </CModal>
-        
+
         </div>
     )
 }

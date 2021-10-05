@@ -43,7 +43,6 @@ const DealsPromotions = () => {
       }
     }).catch((error) => {
       setIsLoader(false);
-      debugger
     });
   }
 
@@ -51,13 +50,13 @@ const DealsPromotions = () => {
     auth.onAuthStateChanged((user) => {
       setIsLoader(true);
       if (!user) {
-        history.replace("/login/")
+        // history.replace("/login/")
       } else {
         database.ref('users/' + user.uid).get().then((snapshot) => {
           if (snapshot.exists()) {
             const userData = snapshot.val();
             if (userData.role != 2) {
-              history.replace("/login/")
+              //history.replace("/login/")
             }
             setIsPermission(userData.permitDeals)
             userBusinessId = userData.business_id;
@@ -72,8 +71,8 @@ const DealsPromotions = () => {
     })
   }, [])
 
-  
-  
+
+
   var viewPromotions = (key) => {
     history.push('/deals/preview/' + key)
   }

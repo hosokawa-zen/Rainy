@@ -55,7 +55,6 @@ const AddBusinessAccounts = React.lazy(() => import('./views/pages/admin/busines
 const ViewBusinessAccounts = React.lazy(() => import('./views/pages/admin/business/PreviewBusinessAccount'));
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/deals', exact: true,  name: 'Deals and Promotions', component: DealsPromotions },
   { path: '/earnings', exact: true,  name: 'Earnings', component: Earning },
@@ -110,7 +109,8 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', component: Modals },
   { path: '/notifications/toaster', name: 'Toaster', component: Toaster },
   { path: '/widgets', name: 'Widgets', component: Widgets },
-  { path: '/users/:id', exact: true, name: 'User Details', component: User }
+  { path: '/users/:id', exact: true, name: 'User Details', component: User },
+  { path: '/', name: 'Home' },
 ];
 
 export default routes;

@@ -13,13 +13,13 @@ const ChangePassword = () => {
 
   auth.onAuthStateChanged((user) => {
     if (!user) {
-      history.replace("/login/")
+      // history.replace("/login/")
     } else {
       database.ref('users/' + user.uid).get().then((snapshot) => {
         if (snapshot.exists()) {
           const userData = snapshot.val();
           if (userData.role != 1) {
-            history.replace("/login/")
+            //history.replace("/login/")
           }
         }
       })

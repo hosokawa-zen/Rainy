@@ -106,7 +106,7 @@ const Dashboard = () => {
     auth.onAuthStateChanged((user) => {
       setIsLoader(true)
       if (!user) {
-        history.replace("/login/")
+        // history.replace("/login/")
       } else {
         currentUser = user;
         database.ref('users/' + user.uid).get().then((snapshot) => {
@@ -121,10 +121,10 @@ const Dashboard = () => {
               setIsLoader(false)
             }
             if (userData.role != 2) {
-              history.replace("/login/")
+              //history.replace("/login/")
             }
           } else {
-            history.replace("/login/")
+            //history.replace("/login/")
           }
         })
       }

@@ -69,15 +69,14 @@ const PreviewPromotions = () => {
         try {
           setIsLoader(true);
           if (!user) {
-            history.replace("/login/")
+            // history.replace("/login/")
           } else {
             database.ref('users/' + user.uid).get().then((snapshot) => {
               if (snapshot.exists()) {
                 const userData = snapshot.val();
-                debugger
                 refreshBusiness(userData)
                 if (userData.role != 2) {
-                  history.replace("/login/")
+                  //history.replace("/login/")
                 }
               } else {
                 setIsLoader(false);
@@ -94,7 +93,7 @@ const PreviewPromotions = () => {
       setHeaderSearch(value);
       searchTransaction(value, dateInput, dateInput1)
     }
-  
+
     const onDateInputChange = (value, flag) => {
       var load = {};
       if (flag == 1) {
@@ -121,7 +120,6 @@ const PreviewPromotions = () => {
     }
 
     const searchTransaction = (key, data, data1) => {
-      debugger
       var items = [];
       staticTransactions.forEach(transaction => {
         if (transaction.name.toLowerCase().includes(key.toLowerCase())) {
@@ -137,7 +135,6 @@ const PreviewPromotions = () => {
       userBusinessId = userData.business_id;
       database.ref('business/' + userData.business_id).get().then((snapshot) => {
           if (snapshot.exists) {
-            debugger
           const newArray = snapshot.val();
             if (newArray) {
                 setBusinessName(newArray.name)
@@ -145,7 +142,7 @@ const PreviewPromotions = () => {
                 setBusinessContact(newArray.contact)
                 setBusinessEmail(newArray.email)
                 setBusinessWebSite(newArray.website)
-                
+
                 refreshTransaction();
                 refreshPromotions();
             }
@@ -183,7 +180,6 @@ const PreviewPromotions = () => {
           if (transData == null) {
             setTransItems([])
           } else {
-            debugger
             database.ref('users/').get().then((snapshot2) => {
               if (snapshot2.exists) {
                 const userData = snapshot2.val();
@@ -474,7 +470,7 @@ const PreviewPromotions = () => {
                                   </div>
                                 </div>
                               </CCol>
-                                
+
                             </div>
                         </CCardBody>
                     </CCard>

@@ -18,7 +18,7 @@ const PreviewBusinessAccounts = () => {
   })
 
   const { id } = useParams();
-  
+
   const refreshPreivew = () => {
     database.ref('business/' + id).get().then((snapshot) => {
       if (snapshot.exists) {
@@ -35,7 +35,6 @@ const PreviewBusinessAccounts = () => {
         }
       }
     }).catch((error) => {
-      debugger
     });
   }
 
@@ -50,13 +49,13 @@ const PreviewBusinessAccounts = () => {
     refreshPreivew();
     auth.onAuthStateChanged((user) => {
       if (!user) {
-        history.replace("/login/")
+        // history.replace("/login/")
       } else {
         database.ref('users/' + user.uid).get().then((snapshot) => {
           if (snapshot.exists()) {
             const userData = snapshot.val();
             if (userData.role != 1) {
-              history.replace("/login/")
+              //history.replace("/login/")
             }
           }
         })
@@ -82,7 +81,7 @@ const PreviewBusinessAccounts = () => {
           <div className="image-content">
             <CImg
               src={previewItem.image ? previewItem.image : "./images/jpg/company_logo.png"}
-            /> 
+            />
           </div>
         </CCardBody>
       </CCard>

@@ -42,14 +42,14 @@ const AddBusinessAccounts = () => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (!user) {
-        history.replace("/login/")
+        // history.replace("/login/")
       } else {
         admin_id = user.uid;
         database.ref('users/' + user.uid).get().then((snapshot) => {
           if (snapshot.exists()) {
             const userData = snapshot.val();
             if (userData.role != 1) {
-              history.replace("/login/")
+              //history.replace("/login/")
             }
           }
         })
@@ -57,7 +57,7 @@ const AddBusinessAccounts = () => {
     })
   }, [])
 
-  refreshCount++; 
+  refreshCount++;
   EventEmitter.subscribe('add-bussiness-account-user', () => {
     innerCount++
     if (innerCount == refreshCount) {
@@ -70,24 +70,23 @@ const AddBusinessAccounts = () => {
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
       for ( var i = 0; i < length; i++ ) {
-        result.push(characters.charAt(Math.floor(Math.random() * 
+        result.push(characters.charAt(Math.floor(Math.random() *
         charactersLength)));
       }
     return result.join('') + Math.floor(Date.now() / 1000);
   }
 
   const saveBusiness = () => {
-    debugger
     setIsLoader(true)
     authWork.createUserWithEmailAndPassword(businessEmail, tempPassword).then( async (credential) => {
       console.log(credential)
-      
+
       if(!credential.user) {
         alert("no user")
         return
       }
       const user_id = credential.user.uid;
-      
+
       var imageLink = "";
       if (imageFile) {
           imageLink = await new Promise((resolve, reject) => {
@@ -120,7 +119,7 @@ const AddBusinessAccounts = () => {
         setImageSrc(imageLink)
       }
       updates[`business/${business_id}/userId`] = user_id;
-      
+
       updates[`users/${user_id}/admin`] = admin_id;
       updates[`users/${user_id}/avatar`] = "";
       updates[`users/${user_id}/email`] = businessEmail;
@@ -134,8 +133,6 @@ const AddBusinessAccounts = () => {
       updates[`users/${user_id}/role`] = 2;
       updates[`users/${user_id}/business_id`] = business_id;
 
-      debugger
-
       database.ref().update(updates);
       setIsLoader(false)
       history.replace('/admin/business/')
@@ -143,9 +140,9 @@ const AddBusinessAccounts = () => {
       setIsLoader(false)
       alert(error)
     })
-    
+
   }
-  
+
 
   return (
     <div className="add-business-account">

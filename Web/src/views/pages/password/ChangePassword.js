@@ -13,7 +13,7 @@ const ChangePassword = () => {
 
   auth.onAuthStateChanged((user) => {
     if (!user) {
-      history.replace("/login/")
+      // history.replace("/login/")
     }
   })
 

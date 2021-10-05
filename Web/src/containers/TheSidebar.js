@@ -34,7 +34,6 @@ const TheSidebar = () => {
   }
 
   const handleLogOut = () => {
-    debugger
     auth.signOut();
   }
 
@@ -91,7 +90,7 @@ const TheSidebar = () => {
             }}
           />
         }
-        
+
       </CSidebarNav>
       <div className="c-d-md-down-none side-footer">
        <div className="c-sidebar-nav-item">

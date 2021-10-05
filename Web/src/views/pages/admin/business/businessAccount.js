@@ -57,7 +57,6 @@ const BusinessAccounts = () => {
       }
     }).catch((error) => {
       setIsLoader(false)
-      debugger
     });
   }
 
@@ -65,14 +64,14 @@ const BusinessAccounts = () => {
     auth.onAuthStateChanged((user) => {
       setIsLoader(true)
       if (!user) {
-        history.replace("/login/")
+        // history.replace("/login/")
       } else {
         database.ref('users/' + user.uid).get().then((snapshot) => {
           if (snapshot.exists()) {
             const userData = snapshot.val();
             refreshBusiness();
             if (userData.role != 1) {
-              history.replace("/login/")
+              //history.replace("/login/")
             }
           }
         })
@@ -97,15 +96,14 @@ const BusinessAccounts = () => {
     })
   }, [])
 
-  
-  
-  
+
+
+
   var viewBusiness = (key) => {
     history.push('/admin/business/preview/' + key)
   }
 
   var deactiveBusiness = (key, index) => {
-    debugger
     var updates = {};
     updates[`business/${key}/active`] = !businessItem[index].active;
     database.ref().update(updates);

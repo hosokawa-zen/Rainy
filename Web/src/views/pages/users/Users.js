@@ -38,7 +38,7 @@ const Users = () => {
   const [isPermission, setIsPermission] = useState(true);
 
   const [isLoader, setIsLoader] = useState(false);
-  
+
   const history = useHistory();
 
   const refreshUsers = () => {
@@ -69,13 +69,13 @@ const Users = () => {
       }
     });
   }
-  
+
   useEffect(() => {
 
     auth.onAuthStateChanged((user) => {
       setIsLoader(true)
       if (!user) {
-        history.replace("/login/")
+        // history.replace("/login/")
       } else {
         setUserAdmin(user.uid)
         database.ref('users/' + user.uid).get().then((snapshot) => {
@@ -88,13 +88,13 @@ const Users = () => {
               setIsLoader(false)
             }
             if (userData.role != 2) {
-              history.replace("/login/")
+              //history.replace("/login/")
             }
           }
         })
       }
     })
-    
+
     EventEmitter.subscribe('add-new-user', event => {
 
       setAddUser(true);
@@ -105,7 +105,7 @@ const Users = () => {
     userBusinessId = userData.business_id;
     refreshUsers();
   }
-  
+
   var changePermission = (key, tag, value) => {
     var updates = {}
     updates['users/'+ key + "/" + tag] = value;
@@ -130,7 +130,7 @@ const Users = () => {
     }
     authWork.createUserWithEmailAndPassword(userEmail, userPassword).then( async (credential) => {
       console.log(credential)
-      
+
       if(!credential.user) {
         alert("no user")
         return
@@ -187,11 +187,11 @@ const Users = () => {
                       <td className="earn-content">
                         <CFormGroup variant="custom-checkbox" className="mr-0" inline>
                           <CInputCheckbox
-                            custom 
-                            id={"inline-checkbox0" + "-checkbox-" + index} 
-                            name={"inline-checkbox0" + "-checkbox-" + index} 
-                            checked={data.earn} 
-                            onChange={e => { 
+                            custom
+                            id={"inline-checkbox0" + "-checkbox-" + index}
+                            name={"inline-checkbox0" + "-checkbox-" + index}
+                            checked={data.earn}
+                            onChange={e => {
                               var newArray = [...userItems];
                               newArray[index].earn = !newArray[index].earn;
                               setUserItems(newArray);
@@ -204,11 +204,11 @@ const Users = () => {
                       <td className="dashboard-content">
                         <CFormGroup variant="custom-checkbox" className="mr-0" inline>
                           <CInputCheckbox
-                            custom 
-                            id={"inline-checkbox1" + "-checkbox-" + index} 
-                            name={"inline-checkbox1" + "-checkbox-" + index} 
-                            checked={data.dashboard} 
-                            onChange={e => { 
+                            custom
+                            id={"inline-checkbox1" + "-checkbox-" + index}
+                            name={"inline-checkbox1" + "-checkbox-" + index}
+                            checked={data.dashboard}
+                            onChange={e => {
                               var newArray = [...userItems];
                               newArray[index].dashboard = !newArray[index].dashboard;
                               setUserItems(newArray);
@@ -220,12 +220,12 @@ const Users = () => {
                       </td>
                       <td className="user-content">
                         <CFormGroup variant="custom-checkbox" className="mr-0" inline>
-                          <CInputCheckbox 
-                            custom 
-                            id={"inline-checkbox2" + "-checkbox-" + index} 
-                            name={"inline-checkbox2" + "-checkbox-" + index} 
+                          <CInputCheckbox
+                            custom
+                            id={"inline-checkbox2" + "-checkbox-" + index}
+                            name={"inline-checkbox2" + "-checkbox-" + index}
                             checked={data.users}
-                            onChange={e => { 
+                            onChange={e => {
                               var newArray = [...userItems];
                               newArray[index].users = !newArray[index].users;
                               setUserItems(newArray);
@@ -237,12 +237,12 @@ const Users = () => {
                       </td>
                       <td className="deal-content">
                         <CFormGroup variant="custom-checkbox" className="mr-0" inline>
-                          <CInputCheckbox 
-                            custom 
-                            id={"inline-checkbox3" + "-checkbox-" + index} 
-                            name={"inline-checkbox3" + "-checkbox-" + index} 
+                          <CInputCheckbox
+                            custom
+                            id={"inline-checkbox3" + "-checkbox-" + index}
+                            name={"inline-checkbox3" + "-checkbox-" + index}
                             checked={data.deals}
-                            onChange={e => { 
+                            onChange={e => {
                               var newArray = [...userItems];
                               newArray[index].deals = !newArray[index].deals;
                               setUserItems(newArray);
@@ -266,7 +266,7 @@ const Users = () => {
       }
 
       <CModal
-          show={addUser} 
+          show={addUser}
           onClose={() => setAddUser(!addUser)}
           centered
         >
@@ -303,9 +303,9 @@ const Users = () => {
                 </div>
 
                 <CFormGroup variant="custom-checkbox" className="mr-0 ml-5 mb-2" inline>
-                  <CInputCheckbox 
-                      custom 
-                      id="checkbox-permit-earn" 
+                  <CInputCheckbox
+                      custom
+                      id="checkbox-permit-earn"
                       name="checkbox-permit-earn"
                       checked={userPermitEarn}
                       onChange= {e => {SetUserPermitEarn(!userPermitEarn)}}
@@ -314,9 +314,9 @@ const Users = () => {
                 </CFormGroup>
 
                 <CFormGroup variant="custom-checkbox" className="mr-0 ml-5 mb-2" inline>
-                  <CInputCheckbox 
-                      custom 
-                      id="checkbox-permit-dash" 
+                  <CInputCheckbox
+                      custom
+                      id="checkbox-permit-dash"
                       name="checkbox-permit-dash"
                       checked={userPermitDash}
                       onChange= {e => {SetUserPermitDash(!userPermitDash)}}
@@ -325,9 +325,9 @@ const Users = () => {
                 </CFormGroup>
 
                 <CFormGroup variant="custom-checkbox" className="mr-0 ml-5 mb-2" inline>
-                  <CInputCheckbox 
-                      custom 
-                      id="checkbox-permit-manage" 
+                  <CInputCheckbox
+                      custom
+                      id="checkbox-permit-manage"
                       name="checkbox-permit-manage"
                       checked={userPermitManage}
                       onChange= {e => {SetUserPermitManage(!userPermitManage)}}
@@ -336,9 +336,9 @@ const Users = () => {
                 </CFormGroup>
 
                 <CFormGroup variant="custom-checkbox" className="mr-0 ml-5 mb-2" inline>
-                  <CInputCheckbox 
-                      custom 
-                      id="checkbox-permit-deals" 
+                  <CInputCheckbox
+                      custom
+                      id="checkbox-permit-deals"
                       name="checkbox-permit-deals"
                       checked={userPermitDeals}
                       onChange= {e => {SetUserPermitDeals(!userPermitDeals)}}
@@ -347,9 +347,9 @@ const Users = () => {
                 </CFormGroup>
 
                 <CFormGroup variant="custom-checkbox" className="mr-0 ml-5 mb-2" inline>
-                  <CInputCheckbox 
-                      custom 
-                      id="checkbox-permit-change-pwd" 
+                  <CInputCheckbox
+                      custom
+                      id="checkbox-permit-change-pwd"
                       name="checkbox-permit-change-pwd"
                       checked={userPermitChangePwd}
                       onChange= {e => {SetUserPermitChangePwd(!userPermitChangePwd)}}

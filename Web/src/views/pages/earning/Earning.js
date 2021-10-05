@@ -109,7 +109,7 @@ const Earning = () => {
   }
 
   function getSuccessParam() {
-    
+
     const businessParam = params.get("businessParam");
     const success = params.get("success");
     if (success && success == 1) {
@@ -118,12 +118,12 @@ const Earning = () => {
       database.ref().update(updates);
     }
   }
-  
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setIsLoader(true);
       if (!user) {
-        history.replace("/login/")
+        // history.replace("/login/")
       } else {
         currentUser = user;
         database.ref('users/' + user.uid).get().then((snapshot) => {
@@ -138,7 +138,7 @@ const Earning = () => {
             }
             getSuccessParam();
             if (userData.role != 2) {
-              history.replace("/login/")
+              //history.replace("/login/")
             }
           }
         })
@@ -389,7 +389,7 @@ const Earning = () => {
 
       {
         isPermission && <div>
-          <div className="total-earnings"> 
+          <div className="total-earnings">
             <div className="total-earnings-title">TOTAL EARNINGS: </div>
             <div className="total-earnings-price">{`$${totalEarned}`}</div>
           </div>
@@ -403,7 +403,7 @@ const Earning = () => {
       }
 
       <CModal
-        show={bankShow} 
+        show={bankShow}
         onClose={() => setInfo(!bankShow)}
         color="info"
         centered

@@ -48,11 +48,10 @@ const Login = () => {
         if (snapshot.exists()) {
           const userData = snapshot.val();
           if (userData.role == 1) {
-            history.replace('/admin/')
+            history.push('/admin/')
           } else if (userData.role == 2) {
-            history.replace('/dashboard/')
+            history.push('/dashboard/')
           } else {
-            debugger
             alert("no permission");
             auth.signOut()
           }
@@ -129,10 +128,10 @@ const Login = () => {
                     </CInputGroup>
                     <div className="content-center">
                       <CFormGroup variant="custom-checkbox" className="mr-0" inline>
-                        <CInputCheckbox 
-                          custom 
-                          id="inline-checkbox1" 
-                          name="inline-checkbox1" 
+                        <CInputCheckbox
+                          custom
+                          id="inline-checkbox1"
+                          name="inline-checkbox1"
                           checked={remeber}
                           onChange={() => {handleChechbox(!remeber)}}
                         />
