@@ -43,16 +43,14 @@ class SignupWith extends React.Component {
             });
             await GoogleSignin.hasPlayServices();
             const {serverAuthCode, idToken, user} = await GoogleSignin.signIn();
-            console.log(user, idToken);
+
             if (idToken && user) {
                 const credential = auth.GoogleAuthProvider.credential(
                     idToken,
                     serverAuthCode,
                 );
                 var signed = await auth().signInWithCredential(credential);
-                console.log(signed);
                 this.saveUser(signed);
-                this.setModalVisible(true);
             }
         } catch (error) {
             console.log(error);
@@ -70,6 +68,7 @@ class SignupWith extends React.Component {
 
     saveUser = (credential) => {
         try {
+            RNProgressHud.showWithStatus("Loading...");
             const user_id = credential.user.uid;
             var update = {};
             update[`users/${user_id}/user_id`] = user_id;
@@ -78,10 +77,15 @@ class SignupWith extends React.Component {
             update[`users/${user_id}/password`] = '';
             update[`users/${user_id}/email`] = credential.user.email;
             update[`users/${user_id}/avatar`] = credential.user.photoURL;
+            update[`users/${user_id}/term_accepted`] = true;
             this.userId = user_id;
-            database().ref().update(update);
+            database().ref().update(update).then(() => {
+                RNProgressHud.dismiss();
+                this.navigteToHome();
+            });
         } catch (error) {
             alert(JSON.stringify(error));
+            RNProgressHud.dismiss();
         }
     };
 
@@ -104,9 +108,7 @@ class SignupWith extends React.Component {
             const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
 
             const signed = await auth().signInWithCredential(facebookCredential);
-            console.log(signed);
             this.saveUser(signed);
-            this.setModalVisible(true);
         } catch (error) {
             console.log(error);
         }
@@ -131,7 +133,6 @@ class SignupWith extends React.Component {
             // Sign the user in with the credential
             const userCredential = await auth().signInWithCredential(appleCredential);
             this.saveUser(userCredential);
-            this.setModalVisible(true);
         } catch (error) {
         }
     };
@@ -143,29 +144,19 @@ class SignupWith extends React.Component {
     navigateScreem() {
         if (this.props && this.props.navigation) {
             this.props.navigation.navigate('TermsAndCondtions');
-            this.setModalVisible(!this.state.modalVisible);
+            this.setModalVisible(false);
         }
     }
 
     Privacy() {
         if (this.props && this.props.navigation) {
             this.props.navigation.navigate('PrivacyScreen');
-            this.setModalVisible(!this.state.modalVisible);
+            this.setModalVisible(false);
         }
     }
 
     navigteToHome() {
-        try {
-            var update = {};
-            update[`users/${this.userId}/term_accepted`] = true;
-            database().ref().update(update);
-            if (this.props && this.props.navigation) {
-                this.props.navigation.navigate('drawer');
-                this.setModalVisible(!this.state.modalVisible);
-            }
-        } catch (error) {
-            alert(JSON.stringify(error));
-        }
+        this.props.navigation.navigate('drawer');
     }
 
     render() {

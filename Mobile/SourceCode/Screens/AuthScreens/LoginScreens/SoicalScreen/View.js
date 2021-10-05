@@ -73,18 +73,12 @@ class SocialLogin extends React.Component {
 
     checkUser = () => {
         try {
-
             database().ref(`users/${this.userId}/`).once('value').then(snapshot => {
                 if (snapshot.exists()) {
                     const user = snapshot.val();
-                    if (user.term_accepted) {
-                        if (this.props && this.props.navigation) {
-                            Constants.user = user;
-                            this.props.navigation.navigate('drawer');
-                        }
-                    } else {
+                    if (this.props && this.props.navigation) {
                         Constants.user = user;
-                        this.setModalVisible(true);
+                        this.props.navigation.navigate('drawer');
                     }
                 } else {
                     alert('Please sign up first');
