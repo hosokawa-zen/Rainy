@@ -40,7 +40,7 @@
     "image-upload-react": "^1.4.9",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
-    "react": "^17.0.1",
+    "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",
     "react-data-table-component": "^6.11.7",
     "react-date-picker": "^8.1.0",
