@@ -25,6 +25,7 @@ import {LoginManager, AccessToken} from 'react-native-fbsdk-next';
 import appleAuth from '@invertase/react-native-apple-authentication';
 import 'react-native-get-random-values';
 import {v4 as uuid} from 'uuid';
+import RNFetchBlob from 'rn-fetch-blob';
 
 class SignupWith extends React.Component {
     constructor(props) {
@@ -88,6 +89,18 @@ class SignupWith extends React.Component {
             RNProgressHud.dismiss();
         }
     };
+
+    getFacebookData = async (token) => {
+        return await RNFetchBlob.fetch('GET',
+            "https://graph.facebook.com/v9.0/me?fields=email,name,friends&access_token=" + token,
+        ).then(response => {
+            console.log('facebook api success', response);
+            return response.json();
+        }).catch(e => {
+            console.log('facebook api failed', e);
+            return null;
+        })
+    }
 
     signupWithFaceBook = async () => {
         try {
