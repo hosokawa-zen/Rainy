@@ -7,7 +7,6 @@ import {
 } from './index'
 
 const TheLayout = () => {
-
   return (
     <div className="c-app c-default-layout">
       <TheSidebar/>

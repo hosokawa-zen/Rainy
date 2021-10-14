@@ -12,9 +12,7 @@ const ChangePassword = () => {
   const history = useHistory();
 
   auth.onAuthStateChanged((user) => {
-    if (!user) {
-      // history.replace("/login/")
-    } else {
+    if (user){
       database.ref('users/' + user.uid).get().then((snapshot) => {
         if (snapshot.exists()) {
           const userData = snapshot.val();

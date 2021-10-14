@@ -34,6 +34,7 @@ const TheSidebar = () => {
   }
 
   const handleLogOut = () => {
+    localStorage.removeItem('user');
     auth.signOut();
   }
 

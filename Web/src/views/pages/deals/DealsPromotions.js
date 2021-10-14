@@ -48,10 +48,8 @@ const DealsPromotions = () => {
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      setIsLoader(true);
-      if (!user) {
-        // history.replace("/login/")
-      } else {
+      if (user){
+        setIsLoader(true);
         database.ref('users/' + user.uid).get().then((snapshot) => {
           if (snapshot.exists()) {
             const userData = snapshot.val();

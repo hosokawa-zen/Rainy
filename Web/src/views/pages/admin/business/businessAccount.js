@@ -33,23 +33,26 @@ const BusinessAccounts = () => {
             Object.keys(business).map(key => {
               const buss = business[key];
               const user_id = buss.userId;
-              const user_name = users[user_id].name
-              const avatar = buss.image
-              const active = buss.active
-              const item = {
-                business_id: key,
-                user_id,
-                user_name,
-                avatar,
-                active
+              if(users[user_id]){
+                const user_name = users[user_id].name
+                const avatar = buss.image
+                const active = buss.active
+                const item = {
+                  business_id: key,
+                  user_id,
+                  user_name,
+                  avatar,
+                  active
+                }
+                items.push(item)
               }
-              items.push(item)
             })
             setBusinessItem(items)
             staticBusinessItems = [...items]
             setIsLoader(false)
           }
         }).catch((error) => {
+          console.log('err', error);
           setIsLoader(false)
         });
       } else {
@@ -61,17 +64,19 @@ const BusinessAccounts = () => {
   }
 
   useEffect(() => {
+    if(!localStorage.getItem('user')){
+      history.replace("/login");
+    }
+
     auth.onAuthStateChanged((user) => {
-      setIsLoader(true)
-      if (!user) {
-        // history.replace("/login/")
-      } else {
+      if (user){
+        setIsLoader(true)
         database.ref('users/' + user.uid).get().then((snapshot) => {
           if (snapshot.exists()) {
             const userData = snapshot.val();
             refreshBusiness();
             if (userData.role != 1) {
-              //history.replace("/login/")
+              history.replace("/login")
             }
           }
         })

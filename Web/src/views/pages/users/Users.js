@@ -71,12 +71,13 @@ const Users = () => {
   }
 
   useEffect(() => {
+    if(!localStorage.getItem('user')){
+      history.replace("/login");
+    }
 
     auth.onAuthStateChanged((user) => {
-      setIsLoader(true)
-      if (!user) {
-        // history.replace("/login/")
-      } else {
+      if (user){
+        setIsLoader(true)
         setUserAdmin(user.uid)
         database.ref('users/' + user.uid).get().then((snapshot) => {
           if (snapshot.exists()) {

@@ -108,11 +108,13 @@ const AddPromotions = () => {
     })
 
     useEffect(() => {
-        auth.onAuthStateChanged((user) => {
-            setIsLoader(true);
-            if (!user) {
-              // history.replace("/login/")
-            } else {
+      if(!localStorage.getItem('user')){
+        history.replace("/login");
+      }
+
+      auth.onAuthStateChanged((user) => {
+            if (user){
+              setIsLoader(true);
                 userId = user.uid
                 database.ref('users/' + user.uid).get().then((snapshot) => {
                     if (snapshot.exists()) {

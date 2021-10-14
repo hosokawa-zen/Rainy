@@ -11,11 +11,10 @@ const ChangePassword = () => {
 
   const history = useHistory();
 
-  auth.onAuthStateChanged((user) => {
-    if (!user) {
-      // history.replace("/login/")
-    }
-  })
+  if(!localStorage.getItem('user')){
+    history.replace("/login");
+  }
+
 
   EventEmitter.subscribe('change-password-save', event => {
     var user = auth.currentUser;

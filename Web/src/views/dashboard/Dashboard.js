@@ -86,13 +86,22 @@ const Dashboard = () => {
                       staticTransactions = [...items]
                       setTransItems(items)
                     }
-                    setIsLoader(false)
                   }
+                  setIsLoader(false)
                 })
+              } else {
+                setIsLoader(false)
               }
+            } else {
+              setIsLoader(false)
             }
+          }).catch(e => {
+            console.log('err', e);
+            setIsLoader(false)
           })
         }
+      } else {
+        setIsLoader(false)
       }
     });
   }
@@ -103,11 +112,13 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
+    if(!localStorage.getItem('user')){
+        history.replace("/login");
+    }
+
     auth.onAuthStateChanged((user) => {
-      setIsLoader(true)
-      if (!user) {
-        // history.replace("/login/")
-      } else {
+      if (user) {
+        setIsLoader(true)
         currentUser = user;
         database.ref('users/' + user.uid).get().then((snapshot) => {
           if (snapshot.exists()) {

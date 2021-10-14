@@ -48,8 +48,10 @@ const Login = () => {
         if (snapshot.exists()) {
           const userData = snapshot.val();
           if (userData.role == 1) {
+            localStorage.setItem('user', JSON.stringify(userData));
             history.push('/admin/')
           } else if (userData.role == 2) {
+            localStorage.setItem('user', JSON.stringify(userData));
             history.push('/dashboard/')
           } else {
             alert("no permission");
